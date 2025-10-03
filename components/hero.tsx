@@ -1,5 +1,5 @@
 import BlurText from "./BlurText";
-import { AnimatedParagraph } from "./motion";
+import { AnimatedListItem, AnimatedParagraph } from "./motion";
 
 export function Hero() {
   return (
@@ -74,6 +74,55 @@ export function Hero() {
             .
           </AnimatedParagraph>
         </div>
+
+        <AnimatedParagraph
+          transition={{
+            duration: 0.5,
+            delay: 1.2,
+            ease: [0.25, 0.1, 0.25, 1],
+          }}
+          className="mt-8 text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty"
+        >
+          Check out some of my projects:
+        </AnimatedParagraph>
+        <ul className="mt-4 space-y-3">
+          <AnimatedListItem
+            transition={{
+              duration: 0.5,
+              delay: 1.2,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            className="flex items-center gap-3 text-base md:text-lg lg:text-xl text-muted-foreground font-light"
+          >
+            <span className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-1"></span>
+            <a
+              href="https://dub.sh/invoice-stripe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-primary/60 font-medium"
+            >
+              EasyInvoicePDF.com
+            </a>
+          </AnimatedListItem>
+          <AnimatedListItem
+            transition={{
+              duration: 0.5,
+              delay: 1.2,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            className="flex items-center gap-3 text-base md:text-lg lg:text-xl text-muted-foreground font-light"
+          >
+            <span className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-1"></span>
+            <a
+              href="https://dub.sh/role-fit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-primary/60 font-medium"
+            >
+              RoleFitAI.com
+            </a>
+          </AnimatedListItem>
+        </ul>
       </div>
     </section>
   );

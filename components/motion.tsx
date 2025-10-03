@@ -80,3 +80,24 @@ export const AnimatedImage = ({
     />
   );
 };
+
+export const AnimatedListItem = ({
+  children,
+  className,
+  transition,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  transition?: Transition;
+}) => {
+  return (
+    <motion.li
+      className={cn(className)}
+      initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+      animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      transition={transition}
+    >
+      {children}
+    </motion.li>
+  );
+};

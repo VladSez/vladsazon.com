@@ -14,7 +14,7 @@ export default function Home() {
       >
         <main className="">
           <Hero />
-          <div className="flex justify-center mb-16">
+          <div className="flex justify-center mt-10 mb-16">
             <AnimatedImage
               src="/signature.webp"
               alt="Vlad Sazonau signature"

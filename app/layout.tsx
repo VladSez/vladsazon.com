@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Vlad Sazonau | About me",
+  title: "Vlad Sazonau",
   description:
     "Vlad Sazonau personal website and blog. Vlad Sazonau is a frontend/full-stack developer and enthusiast.",
   authors: [{ name: "Vlad Sazonau" }],
@@ -42,26 +42,30 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  alternates: {
+    canonical: `https://vladsazon.com`,
+  },
   openGraph: {
-    title: "About me",
+    title: "Vlad Sazonau",
     description: "Vlad Sazonau personal website and blog.",
+    type: "website",
     images: [
       {
         url: "/og-about-me.jpeg",
-        alt: "Vlad Sazonau personal website and blog. About me.",
+        alt: "Vlad Sazonau personal website and blog.",
       },
     ],
-    siteName: "Vlad Sazonau | About me",
+    siteName: "Vlad Sazonau",
     url: "https://vladsazon.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About me",
+    title: "Vlad Sazonau",
     description: "Vlad Sazonau personal website and blog.",
     images: [
       {
         url: "/og-about-me.jpeg",
-        alt: "Vlad Sazonau personal website and blog. About me.",
+        alt: "Vlad Sazonau personal website and blog.",
       },
     ],
   },
@@ -88,7 +92,7 @@ export const metadata: Metadata = {
     },
   ],
   appleWebApp: {
-    title: "MyWebSite",
+    title: "Vlad Sazonau",
   },
   manifest: "/site.webmanifest",
 };

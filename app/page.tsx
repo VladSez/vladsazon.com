@@ -57,7 +57,7 @@ export default function Home() {
             rippleColor="#e9ecef"
             rippleSpeed={1.5}
             autoAnimate={true}
-            autoAnimateDelay={2500}
+            autoAnimateDelay={2000}
             rippleOnClick={true}
           />
         </div>

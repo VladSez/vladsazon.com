@@ -27,6 +27,7 @@ export interface CubesProps {
   rippleOnClick?: boolean;
   rippleColor?: string;
   rippleSpeed?: number;
+  autoAnimateDelay?: number;
 }
 
 export const Cubes = ({
@@ -41,6 +42,7 @@ export const Cubes = ({
   faceColor = "#060010",
   shadow = false,
   autoAnimate = true,
+  autoAnimateDelay = 2500,
   rippleOnClick = true,
   rippleColor = "#fff",
   rippleSpeed = 2,
@@ -237,36 +239,45 @@ export const Cubes = ({
 
   useEffect(() => {
     if (!autoAnimate || !sceneRef.current) return;
-    simPosRef.current = {
-      x: Math.random() * gridSize,
-      y: Math.random() * gridSize,
-    };
-    simTargetRef.current = {
-      x: Math.random() * gridSize,
-      y: Math.random() * gridSize,
-    };
-    const speed = 0.02;
-    const loop = () => {
-      if (!userActiveRef.current) {
-        const pos = simPosRef.current;
-        const tgt = simTargetRef.current;
-        pos.x += (tgt.x - pos.x) * speed;
-        pos.y += (tgt.y - pos.y) * speed;
-        tiltAt(pos.y, pos.x);
-        if (Math.hypot(pos.x - tgt.x, pos.y - tgt.y) < 0.1) {
-          simTargetRef.current = {
-            x: Math.random() * gridSize,
-            y: Math.random() * gridSize,
-          };
+
+    // Delay the auto-animation start by autoAnimateDelay ms
+    const startDelay = setTimeout(() => {
+      simPosRef.current = {
+        x: Math.random() * gridSize,
+        y: Math.random() * gridSize,
+      };
+      simTargetRef.current = {
+        x: Math.random() * gridSize,
+        y: Math.random() * gridSize,
+      };
+
+      const speed = 0.03;
+
+      const loop = () => {
+        if (!userActiveRef.current) {
+          const pos = simPosRef.current;
+          const tgt = simTargetRef.current;
+          pos.x += (tgt.x - pos.x) * speed;
+          pos.y += (tgt.y - pos.y) * speed;
+          tiltAt(pos.y, pos.x);
+          if (Math.hypot(pos.x - tgt.x, pos.y - tgt.y) < 0.1) {
+            simTargetRef.current = {
+              x: Math.random() * gridSize,
+              y: Math.random() * gridSize,
+            };
+          }
         }
-      }
+        simRAFRef.current = requestAnimationFrame(loop);
+      };
+
       simRAFRef.current = requestAnimationFrame(loop);
-    };
-    simRAFRef.current = requestAnimationFrame(loop);
+    }, autoAnimateDelay);
+
     return () => {
+      clearTimeout(startDelay);
       if (simRAFRef.current != null) cancelAnimationFrame(simRAFRef.current);
     };
-  }, [autoAnimate, gridSize, tiltAt]);
+  }, [autoAnimate, gridSize, tiltAt, autoAnimateDelay]);
 
   useEffect(() => {
     const el = sceneRef.current;

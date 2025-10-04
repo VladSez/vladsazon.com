@@ -3,13 +3,12 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
-import { Suspense } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Vlad Sazonau",
   description:
-    "Vlad Sazonau personal website and blog. Vlad Sazonau is a frontend/full-stack developer and enthusiast.",
+    "Vlad Sazonau personal website. Vlad Sazonau is a product engineer and design enthusiast.",
   authors: [{ name: "Vlad Sazonau" }],
   keywords: [
     "frontend development",
@@ -47,25 +46,25 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Vlad Sazonau",
-    description: "Vlad Sazonau personal website and blog.",
+    description: "Vlad Sazonau personal website.",
     type: "website",
     images: [
       {
-        url: "/og-about-me.jpeg",
-        alt: "Vlad Sazonau personal website and blog.",
+        url: "https://ik.imagekit.io/fl2lbswwo/vladsazon-og-1.png?updatedAt=1759593592814",
+        alt: "Vlad Sazonau personal website.",
       },
     ],
-    siteName: "Vlad Sazonau",
+    siteName: "vladsazon.com",
     url: "https://vladsazon.com",
   },
   twitter: {
     card: "summary_large_image",
     title: "Vlad Sazonau",
-    description: "Vlad Sazonau personal website and blog.",
+    description: "Vlad Sazonau personal website.",
     images: [
       {
-        url: "/og-about-me.jpeg",
-        alt: "Vlad Sazonau personal website and blog.",
+        url: "https://ik.imagekit.io/fl2lbswwo/vladsazon-og-1.png?updatedAt=1759593592814",
+        alt: "Vlad Sazonau personal website.",
       },
     ],
   },

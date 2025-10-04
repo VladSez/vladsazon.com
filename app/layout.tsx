@@ -107,7 +107,7 @@ export default function RootLayout({
       <body
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
       >
-        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        {children}
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

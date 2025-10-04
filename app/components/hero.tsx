@@ -1,6 +1,6 @@
-import BlurText from "./BlurText";
-import { ExternalLink } from "./external-link";
-import { AnimatedListItem, AnimatedParagraph } from "./motion";
+import { BlurText } from "@/components/BlurText";
+import { AnimatedListItem, AnimatedParagraph } from "../../components/motion";
+import { ExternalLink } from "@/components/external-link";
 
 export function Hero() {
   return (

@@ -20,7 +20,7 @@ interface Spark {
   startTime: number;
 }
 
-const ClickSpark: React.FC<ClickSparkProps> = ({
+export const ClickSpark = ({
   sparkColor = "#fff",
   sparkSize = 10,
   sparkRadius = 15,
@@ -29,7 +29,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
   easing = "ease-out",
   extraScale = 1.0,
   children,
-}) => {
+}: ClickSparkProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparksRef = useRef<Spark[]>([]);
   const startTimeRef = useRef<number | null>(null);
@@ -170,5 +170,3 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     </div>
   );
 };
-
-export default ClickSpark;

@@ -260,7 +260,7 @@ export const Cubes = ({
           pos.x += (tgt.x - pos.x) * speed;
           pos.y += (tgt.y - pos.y) * speed;
           tiltAt(pos.y, pos.x);
-          if (Math.hypot(pos.x - tgt.x, pos.y - tgt.y) < 0.1) {
+          if (Math.hypot(pos.x - tgt.x, pos.y - tgt.y) < 0.6) {
             simTargetRef.current = {
               x: Math.random() * gridSize,
               y: Math.random() * gridSize,

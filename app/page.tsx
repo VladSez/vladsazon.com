@@ -14,7 +14,7 @@ export default function Home() {
       >
         <main className="">
           <Hero />
-          <div className="flex justify-center mt-10 mb-16">
+          <div className="flex justify-center mb-16">
             <AnimatedImage
               src="/signature.webp"
               alt="Vlad Sazonau signature"
@@ -22,9 +22,11 @@ export default function Home() {
               width={133}
               className="dark:invert dark:hue-rotate-180"
               transition={{
-                duration: 0.8,
-                delay: 0.2,
-                ease: [0.25, 0.1, 0.25, 1],
+                type: "spring",
+                stiffness: 100,
+                damping: 15,
+                mass: 1,
+                delay: 1.2,
               }}
             />
           </div>

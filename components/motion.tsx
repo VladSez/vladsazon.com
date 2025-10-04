@@ -74,8 +74,7 @@ export const AnimatedImage = ({
       width={width}
       className={cn(className)}
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-      whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-      viewport={{ once: true }}
+      animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={transition}
     />
   );

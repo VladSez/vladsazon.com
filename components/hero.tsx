@@ -1,4 +1,5 @@
 import BlurText from "./BlurText";
+import { ExternalLink } from "./external-link";
 import { AnimatedListItem, AnimatedParagraph } from "./motion";
 
 export function Hero() {
@@ -25,61 +26,47 @@ export function Hero() {
           </AnimatedParagraph>
           <AnimatedParagraph
             transition={{
-              duration: 0.5,
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+              mass: 1,
               delay: 1.2,
-              ease: [0.25, 0.1, 0.25, 1],
             }}
             className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty"
           >
-            I craft exceptional web experiences with 8+ years of expertise in
-            React, Next.js, and TypeScript. Passionate about thoughtful design,
-            seamless user experiences, accessibility, and contributing to
-            open-source projects.
+            I craft exceptional web experiences with over 8 years of expertise
+            in React, Next.js, and TypeScript. I’m passionate about design,
+            accessibility, user experience, and contributing to open-source
+            projects.
           </AnimatedParagraph>
+
           <AnimatedParagraph
             transition={{
-              duration: 0.5,
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+              mass: 1,
               delay: 1.2,
-              ease: [0.25, 0.1, 0.25, 1],
             }}
             className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty"
           >
             For more information please check my{" "}
-            <a
-              href="https://dub.sh/vlad-cv"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-primary/60 font-medium"
-            >
-              CV
-            </a>
-            ,{" "}
-            <a
-              href="https://dub.sh/vladsazon-linkedin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-primary/60 font-medium"
-            >
+            <ExternalLink href="https://dub.sh/vlad-cv">CV</ExternalLink>,{" "}
+            <ExternalLink href="https://dub.sh/vladsazon-linkedin">
               LinkedIn
-            </a>
+            </ExternalLink>
             , or{" "}
-            <a
-              href="https://git.new/vldzn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-primary/60 font-medium"
-            >
-              GitHub
-            </a>
-            .
+            <ExternalLink href="https://git.new/vldzn">GitHub</ExternalLink>.
           </AnimatedParagraph>
         </div>
 
         <AnimatedParagraph
           transition={{
-            duration: 0.5,
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            mass: 1,
             delay: 1.2,
-            ease: [0.25, 0.1, 0.25, 1],
           }}
           className="mt-8 text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty"
         >
@@ -88,39 +75,33 @@ export function Hero() {
         <ul className="mt-4 space-y-3">
           <AnimatedListItem
             transition={{
-              duration: 0.5,
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+              mass: 1,
               delay: 1.2,
-              ease: [0.25, 0.1, 0.25, 1],
             }}
             className="flex items-center gap-3 text-base md:text-lg lg:text-xl text-muted-foreground font-light"
           >
             <span className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-1"></span>
-            <a
-              href="https://dub.sh/invoice-stripe"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-primary/60 font-medium"
-            >
+            <ExternalLink href="https://dub.sh/invoice-stripe">
               EasyInvoicePDF.com
-            </a>
+            </ExternalLink>
           </AnimatedListItem>
           <AnimatedListItem
             transition={{
-              duration: 0.5,
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+              mass: 1,
               delay: 1.2,
-              ease: [0.25, 0.1, 0.25, 1],
             }}
             className="flex items-center gap-3 text-base md:text-lg lg:text-xl text-muted-foreground font-light"
           >
             <span className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-1"></span>
-            <a
-              href="https://dub.sh/role-fit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-primary/60 font-medium"
-            >
+            <ExternalLink href="https://dub.sh/role-fit">
               RoleFitAI.com
-            </a>
+            </ExternalLink>
           </AnimatedListItem>
         </ul>
       </div>

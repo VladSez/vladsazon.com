@@ -54,7 +54,7 @@ export default function Home() {
             radius={4}
             borderStyle="1px solid rgba(0, 0, 0, 0.15)"
             faceColor="#f8f9fa"
-            rippleColor="#ffd700"
+            rippleColor="#e9ecef"
             rippleSpeed={1.5}
             autoAnimate={true}
             rippleOnClick={true}

@@ -121,3 +121,25 @@ export const AnimatedDiv = ({
     </motion.div>
   );
 };
+
+export const AnimatedInViewDiv = ({
+  children,
+  className,
+  transition,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  transition?: Transition;
+}) => {
+  return (
+    <motion.div
+      className={cn(className)}
+      initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+      whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      viewport={{ once: true }}
+      transition={transition}
+    >
+      {children}
+    </motion.div>
+  );
+};

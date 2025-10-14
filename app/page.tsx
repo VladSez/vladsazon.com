@@ -1,7 +1,9 @@
 import { ClickSpark } from "@/components/ClickSpark";
 import { Cubes } from "@/components/Cubes";
 import { Hero } from "@/app/components/hero";
-import { AnimatedDiv, AnimatedImage } from "@/components/motion";
+import { AnimatedImage, AnimatedInViewDiv } from "@/components/motion";
+import { Arrow } from "./components/arrow";
+import { Signature } from "./components/signature";
 
 export default function Home() {
   return (
@@ -17,7 +19,8 @@ export default function Home() {
           <main className="">
             <Hero />
             <div className="flex justify-center mb-16">
-              <AnimatedImage
+              <Signature />
+              {/* <AnimatedImage
                 src="/signature.webp"
                 alt="Vlad Sazonau signature"
                 height={92}
@@ -28,40 +31,57 @@ export default function Home() {
                   stiffness: 100,
                   damping: 15,
                   mass: 1,
-                  delay: 1.2,
+                  delay: 1,
                 }}
-              />
+              /> */}
             </div>
           </main>
         </ClickSpark>
       </div>
 
-      {/* Cubes Section */}
-      <AnimatedDiv
-        className="flex items-center justify-center min-h-[50vh] py-8 px-4"
+      <AnimatedInViewDiv
+        className="flex justify-center items-center gap-10 flex-col mt-20"
         transition={{
           type: "spring",
           stiffness: 100,
           damping: 15,
           mass: 1,
-          delay: 1.2,
         }}
       >
-        <div className="w-full max-w-screen-lg flex justify-center">
-          <Cubes
-            gridSize={8}
-            maxAngle={60}
-            radius={4}
-            borderStyle="1px solid rgba(0, 0, 0, 0.15)"
-            faceColor="#f8f9fa"
-            rippleColor="#e9ecef"
-            rippleSpeed={1.5}
-            autoAnimate={true}
-            autoAnimateDelay={2500}
-            rippleOnClick={true}
-          />
-        </div>
-      </AnimatedDiv>
+        <p className="font-mono text-sm text-muted-foreground">
+          Hover over the cubes
+        </p>
+
+        <Arrow className="text-gray-400" />
+      </AnimatedInViewDiv>
+      {/* Cubes Section */}
+      <div className="min-h-[50vh]">
+        <AnimatedInViewDiv
+          className="flex items-center justify-center my-12"
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            mass: 1,
+            delay: 1.3,
+          }}
+        >
+          <div className="w-full max-w-screen-lg flex justify-center">
+            <Cubes
+              gridSize={8}
+              maxAngle={60}
+              radius={4}
+              borderStyle="1px solid rgba(0, 0, 0, 0.15)"
+              faceColor="#f8f9fa"
+              rippleColor="#e9ecef"
+              rippleSpeed={3}
+              autoAnimate={true}
+              autoAnimateDelay={6000}
+              rippleOnClick={true}
+            />
+          </div>
+        </AnimatedInViewDiv>
+      </div>
     </>
   );
 }

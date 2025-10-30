@@ -1,9 +1,10 @@
-import { ClickSpark } from "@/components/ClickSpark";
-import { Cubes } from "@/components/Cubes";
 import { Hero } from "@/app/components/hero";
-import { AnimatedImage, AnimatedInViewDiv } from "@/components/motion";
+import { ClickSpark } from "@/components/ClickSpark";
+import { AnimatedInViewDiv } from "@/components/motion";
+import { SnakeGame } from "@/components/snake-game";
 import { Arrow } from "./components/arrow";
 import { Signature } from "./components/signature";
+import { Clock } from "@/components/clock";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
           sparkCount={8}
           duration={400}
         >
+          <div className="fixed top-4 right-4 z-50 text-sm text-muted-foreground">
+            <Clock />
+          </div>
           <main className="">
             <Hero />
             <div className="flex justify-center mb-16">
@@ -49,13 +53,15 @@ export default function Home() {
         }}
       >
         <p className="font-mono text-sm text-muted-foreground">
-          Hover over the cubes
+          Want to play? Try out my Snake game below! 🐍
         </p>
-
-        <Arrow className="text-gray-400" />
       </AnimatedInViewDiv>
+      <div className="flex items-center justify-center my-10">
+        <Arrow className="text-gray-400" />
+      </div>
+      <SnakeGame />
       {/* Cubes Section */}
-      <div className="min-h-[50vh]">
+      {/* <div className="min-h-[50vh]">
         <AnimatedInViewDiv
           className="flex items-center justify-center my-12"
           transition={{
@@ -76,12 +82,12 @@ export default function Home() {
               rippleColor="#e9ecef"
               rippleSpeed={3}
               autoAnimate={true}
-              autoAnimateDelay={6000}
+              autoAnimateDelay={5000}
               rippleOnClick={true}
             />
           </div>
         </AnimatedInViewDiv>
-      </div>
+      </div> */}
     </>
   );
 }

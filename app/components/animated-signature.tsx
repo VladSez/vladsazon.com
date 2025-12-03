@@ -22,7 +22,7 @@ const draw: Variants = {
   },
 };
 
-export const Signature = () => {
+export const AnimatedSignature = () => {
   return (
     <motion.svg
       width="299"

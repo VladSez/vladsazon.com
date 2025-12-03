@@ -82,7 +82,7 @@ export function SnakeGame() {
   });
   const [score, setScore] = useState(0);
   const [gameState, setGameState] = useState<GameState>(GAME_STATE.MENU);
-  const [pulse, setPulse] = useState(false);
+  // const [pulse, setPulse] = useState(false);
   const [currentColor, setCurrentColor] = useState(randomColor());
 
   // Create and cache all food images once
@@ -236,9 +236,9 @@ export function SnakeGame() {
       .getPropertyValue("--color-background")
       .trim();
     const borderColor = computedStyle.getPropertyValue("--color-border").trim();
-    const primaryColor = computedStyle
-      .getPropertyValue("--color-primary")
-      .trim();
+    // const primaryColor = computedStyle
+    //   .getPropertyValue("--color-primary")
+    //   .trim();
 
     // Clear canvas with theme background
     ctx.fillStyle = backgroundColor || "#ffffff";
@@ -397,8 +397,8 @@ export function SnakeGame() {
         setFood(randomFood());
         const newScore = score + 1;
         setScore(newScore);
-        setPulse(true);
-        setTimeout(() => setPulse(false), 200);
+        // setPulse(true);
+        // setTimeout(() => setPulse(false), 200);
 
         // Check if we hit a speed milestone (every 5th score)
         const shouldChangeColor = newScore % 5 === 0 && newScore > 0;
@@ -427,11 +427,9 @@ export function SnakeGame() {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col items-center justify-start sm:justify-center min-h-screen bg-background text-foreground px-3 sm:px-6 py-4 sm:py-10 "
+      className="flex flex-col items-center justify-start sm:justify-center min-h-screen bg-background text-foreground "
     >
       <div className="max-w-lg w-full space-y-2 sm:space-y-3 md:space-y-4">
-        {/* <DesktopGameControls /> */}
-
         {/** Score display with button to pause/resume, */}
         <div className="min-h-12 mb-2 block">
           <AnimatePresence>
@@ -500,8 +498,9 @@ export function SnakeGame() {
         <div className="relative lg:min-h-[500px]">
           <motion.canvas
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.5 }}
             ref={canvasRef}
             width={canvasSize}
             height={canvasSize}
@@ -523,7 +522,13 @@ export function SnakeGame() {
         </div>
 
         {/* Mobile Controls - Only visible on tablets and smaller screens */}
-        <div className="flex lg:hidden flex-col items-center gap-1.5 sm:gap-2 mt-5">
+        <motion.div
+          className="flex lg:hidden flex-col items-center gap-1.5 sm:gap-2 mt-5"
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
           <div className="grid grid-cols-3 gap-3 ">
             {/* Empty cell */}
             <div />
@@ -566,7 +571,7 @@ export function SnakeGame() {
               →
             </SnakeGameUIButton>
           </div>
-        </div>
+        </motion.div>
       </div>
       {/* Debug: Preview all icons (FOR TESTING ONLY) */}
       <div className="mt-8 p-2 sm:p-4 border rounded-lg bg-muted/50">
@@ -634,8 +639,9 @@ const StartGameScreen = ({ startGame }: { startGame: () => void }) => {
     <motion.div
       key="startGame"
       initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
       exit={{ opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
       className="absolute inset-0 flex items-center justify-center bg-background/80 rounded-lg"
     >
       <div className="text-center space-y-4 sm:space-y-6 md:space-y-8 max-w-sm mx-auto px-4">

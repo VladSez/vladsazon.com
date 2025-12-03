@@ -1,18 +1,14 @@
 import { BlurText } from "@/components/BlurText";
-import {
-  AnimatedDiv,
-  AnimatedListItem,
-  AnimatedParagraph,
-} from "../../components/motion";
+import { AnimatedDiv, AnimatedParagraph } from "../../components/motion";
 import { ExternalLink } from "@/components/external-link";
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 lg:px-20">
+    <section className="flex items-center justify-center px-6 lg:px-20 pt-18 pb-10 lg:py-20">
       <div className="max-w-5xl">
         <BlurText
           text="Vlad Sazonau"
-          delay={200}
+          delay={150}
           stepDuration={0.3}
           animateBy="words"
           direction="bottom"
@@ -21,7 +17,7 @@ export function Hero() {
         <div className="space-y-8">
           <AnimatedParagraph
             transition={{
-              duration: 0.4,
+              duration: 0.3,
               delay: 0.6,
               ease: [0.25, 0.1, 0.25, 1],
             }}
@@ -36,7 +32,8 @@ export function Hero() {
               stiffness: 100,
               damping: 15,
               mass: 1,
-              delay: 1,
+              delay: 0.8,
+              duration: 0.3,
             }}
           >
             <div className="space-y-8">
@@ -47,35 +44,27 @@ export function Hero() {
                 to open-source projects.
               </p>
 
-              <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty">
-                For more information please check my{" "}
-                <ExternalLink href="https://dub.sh/vlad-cv">CV</ExternalLink>,{" "}
+              <p className="mt-8 text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty">
+                Currently building{" "}
+                <ExternalLink href="https://dub.sh/invoice-stripe">
+                  EasyInvoicePDF
+                </ExternalLink>{" "}
+                and{" "}
+                <ExternalLink href="https://dub.sh/role-fit">
+                  RoleFitAI
+                </ExternalLink>
+              </p>
+
+              <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty space-x-3">
+                <ExternalLink href="https://git.new/vldzn">GitHub</ExternalLink>
+
                 <ExternalLink href="https://dub.sh/vladsazon-linkedin">
                   LinkedIn
                 </ExternalLink>
-                , or{" "}
-                <ExternalLink href="https://git.new/vldzn">GitHub</ExternalLink>
-                .
+
+                <ExternalLink href="https://dub.sh/vlad-cv">CV</ExternalLink>
               </p>
             </div>
-
-            <p className="mt-8 text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty">
-              Check out some of my projects:
-            </p>
-            <ul className="mt-4 space-y-3">
-              <li className="flex items-center gap-3 text-base md:text-lg lg:text-xl text-muted-foreground font-light">
-                <span className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-1"></span>
-                <ExternalLink href="https://dub.sh/invoice-stripe">
-                  EasyInvoicePDF.com
-                </ExternalLink>
-              </li>
-              <li className="flex items-center gap-3 text-base md:text-lg lg:text-xl text-muted-foreground font-light">
-                <span className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-1"></span>
-                <ExternalLink href="https://dub.sh/role-fit">
-                  RoleFitAI.com
-                </ExternalLink>
-              </li>
-            </ul>
           </AnimatedDiv>
         </div>
       </div>

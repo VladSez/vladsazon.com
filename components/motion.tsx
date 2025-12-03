@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, type Transition } from "motion/react";
+import { motion, type Transition, type ViewportOptions } from "motion/react";
 
 export const AnimatedParagraph = ({
   children,
@@ -115,6 +115,30 @@ export const AnimatedDiv = ({
       className={cn(className)}
       initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
       animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      transition={transition}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const AnimatedInViewDiv = ({
+  children,
+  className,
+  transition,
+  viewport = { once: true },
+}: {
+  children: React.ReactNode;
+  className?: string;
+  transition?: Transition;
+  viewport?: ViewportOptions;
+}) => {
+  return (
+    <motion.div
+      className={cn(className)}
+      initial={{ opacity: 0, filter: "blur(10px)", y: 50 }}
+      whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      viewport={viewport}
       transition={transition}
     >
       {children}

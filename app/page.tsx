@@ -11,7 +11,7 @@ export default function Home() {
         </div>
         <main className="mb-20">
           <Hero />
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-14 mb-4 lg:mb-8 lg:mt-4">
             <AnimatedSignature />
           </div>
           {/* <div className="flex justify-center mt-14 mb-4">

@@ -36,7 +36,10 @@ export function Hero() {
               duration: 0.3,
             }}
           >
-            <div className="space-y-8" style={{ WebkitTextSizeAdjust: "none" }}>
+            <div
+              className="space-y-8 min-w-[280px]"
+              style={{ WebkitTextSizeAdjust: "none" }}
+            >
               <p className="text-base md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty">
                 I craft exceptional web experiences with over 8 years of
                 expertise in React, Next.js, and TypeScript. I'm passionate

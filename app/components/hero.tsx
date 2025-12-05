@@ -37,7 +37,7 @@ export function Hero() {
             }}
           >
             <div className="space-y-8">
-              <p className="text-base md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty">
+              <p className="text-[16px] md:text-xl lg:text-2xl text-muted-foreground md:leading-relaxed max-w-3xl font-light text-pretty">
                 I craft exceptional web experiences with over 8 years of
                 expertise in React, Next.js, and TypeScript. I’m passionate
                 about design, accessibility, user experience, and contributing

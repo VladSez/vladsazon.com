@@ -38,27 +38,24 @@ export function Hero() {
           >
             <div className="space-y-8">
               <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty">
-                I craft exceptional web experiences with over 8 years of
-                expertise in React, Next.js, and TypeScript. I’m passionate
-                about design, accessibility, user experience, and contributing
-                to open-source projects.
+                I'm a product-minded generalist with 8+ years of experience
+                building and shipping web products using React, Next.js, and
+                TypeScript. I like owning products end to end, bridging
+                engineering, design, and product to ship things that are useful,
+                usable, and well-crafted.
               </p>
 
               <p className="mt-8 text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty">
                 Currently building{" "}
-                <ExternalLink href="https://dub.sh/invoice-stripe">
+                <ExternalLink href="https://easyinvoicepdf.com/?template=stripe&ref=vladsazon.com">
                   EasyInvoicePDF
-                </ExternalLink>{" "}
-                and{" "}
-                <ExternalLink href="https://dub.sh/role-fit">
-                  RoleFitAI
                 </ExternalLink>
               </p>
 
               <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty space-x-3">
                 <ExternalLink href="https://git.new/vldzn">GitHub</ExternalLink>
 
-                <ExternalLink href="https://dub.sh/vladsazon-linkedin">
+                <ExternalLink href="https://www.linkedin.com/in/vlad-sazonau-22a9a9126">
                   LinkedIn
                 </ExternalLink>
 

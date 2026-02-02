@@ -14,7 +14,7 @@ export function Hero() {
           direction="bottom"
           className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-8 text-balance text-gray-950 leading-tight tracking-tight"
         />
-        <div className="space-y-8">
+        <div className="space-y-8 lg:px-8">
           <AnimatedParagraph
             transition={{
               duration: 0.3,

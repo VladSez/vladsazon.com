@@ -19,7 +19,7 @@ export function ExternalLink({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-primary/60 font-medium",
+        "text-blue-700 hover:text-blue-500 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 font-medium",
         className
       )}
     >

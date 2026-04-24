@@ -1,6 +1,17 @@
 import { BlurText } from "@/components/BlurText";
 import { AnimatedDiv, AnimatedParagraph } from "../../components/motion";
 import { ExternalLink } from "@/components/external-link";
+import type { Transition } from "motion/react";
+
+const blockEnterSpring = (delay: number): Transition => ({
+  type: "spring",
+  stiffness: 100,
+  damping: 15,
+  mass: 1,
+  bounce: 0,
+  duration: 0.3,
+  delay,
+});
 
 export function Hero() {
   return (
@@ -26,23 +37,20 @@ export function Hero() {
             Product Engineer & Design Enthusiast
           </AnimatedParagraph>
 
-          <AnimatedDiv
-            transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 15,
-              mass: 1,
-              delay: 0.8,
-              duration: 0.3,
-            }}
-          >
-            <div className="space-y-8 max-w-3xl">
+          <div className="space-y-8 max-w-3xl">
+            <AnimatedDiv transition={blockEnterSpring(0.8)}>
               <Intro />
+            </AnimatedDiv>
+            <AnimatedDiv transition={blockEnterSpring(0.9)}>
               <Highlights />
+            </AnimatedDiv>
+            <AnimatedDiv transition={blockEnterSpring(1.0)}>
               <CurrentProjects />
+            </AnimatedDiv>
+            <AnimatedDiv transition={blockEnterSpring(1.1)}>
               <SocialLinks />
-            </div>
-          </AnimatedDiv>
+            </AnimatedDiv>
+          </div>
         </div>
       </div>
     </section>
@@ -68,12 +76,12 @@ function Intro() {
 
 function Highlights() {
   return (
-    <div className="border border-border bg-card p-6 md:p-8 rounded-lg">
+    <div className="border border-border bg-card p-6 md:p-8 rounded-2xl">
       <h3 className="text-xl md:text-2xl font-semibold text-gray-950 mb-6 tracking-tight">
         Highlights
       </h3>
       <ul className="space-y-2 text-base md:text-lg text-muted-foreground leading-relaxed font-light">
-        <li className="flex gap-3 p-3 -m-3 rounded-md transition-colors duration-200">
+        <li className="flex gap-3 p-3 -m-3">
           <span className="flex-shrink-0 text-lg">-</span>
           <span className="text-pretty">
             Built{" "}
@@ -81,19 +89,21 @@ function Highlights() {
               EasyInvoicePDF
             </ExternalLink>
             , an open-source invoice generator with{" "}
-            <span className="text-primary font-semibold">
-              500+ GitHub stars
+            <span className="text-primary font-semibold tabular-nums">
+              750+ GitHub stars
             </span>
             , averaging{" "}
-            <span className="text-primary font-semibold">
+            <span className="text-primary font-semibold tabular-nums">
               2k monthly visitors
             </span>
             , and{" "}
-            <span className="text-primary font-semibold">700+ invoices</span>{" "}
+            <span className="text-primary font-semibold tabular-nums">
+              1k+ invoices
+            </span>{" "}
             generated.
           </span>
         </li>
-        <li className="flex gap-3 p-3 -m-3 rounded-md transition-colors duration-200">
+        <li className="flex gap-3 p-3 -m-3">
           <span className="flex-shrink-0 text-lg">-</span>
           <span className="text-pretty">
             Contributed to major OSS projects{" "}
@@ -103,11 +113,11 @@ function Highlights() {
             and received bounties
           </span>
         </li>
-        <li className="flex gap-3 p-3 -m-3 rounded-md transition-colors duration-200">
+        <li className="flex gap-3 p-3 -m-3">
           <span className="flex-shrink-0 text-lg">-</span>
           <span className="text-pretty">
             Featured in a large IT Telegram channel{" "}
-            <span className="text-primary font-semibold">
+            <span className="text-primary font-semibold tabular-nums">
               (50k+ subscribers)
             </span>
           </span>
@@ -140,14 +150,14 @@ function CurrentProjects() {
 
 function SocialLinks() {
   return (
-    <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty space-x-3">
+    <div className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-3xl font-light text-pretty space-x-3">
       <ExternalLink href="https://git.new/vldzn">GitHub</ExternalLink>
 
       <ExternalLink href="https://www.linkedin.com/in/vlad-sazonau-22a9a9126">
         LinkedIn
       </ExternalLink>
 
-      <ExternalLink href="https://dub.sh/vlad-cv">CV</ExternalLink>
-    </p>
+      <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
+    </div>
   );
 }

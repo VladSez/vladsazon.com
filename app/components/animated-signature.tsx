@@ -12,11 +12,11 @@ const draw: Variants = {
         type: "spring",
         duration: 3,
         bounce: 0,
-        delay: 0.4,
+        delay: 0.3,
       },
       opacity: {
         duration: 0.1,
-        delay: 0.4,
+        delay: 0.3,
       },
     },
   },

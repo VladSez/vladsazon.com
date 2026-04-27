@@ -91,7 +91,7 @@ function Highlights() {
       <h3 className="mb-4 text-lg font-semibold tracking-tight text-balance text-gray-950 sm:mb-5 sm:text-xl">
         Highlights
       </h3>
-      <ul className="space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed font-light">
+      <ul className="space-y-3 text-base text-muted-foreground leading-relaxed font-light sm:text-lg">
         <li className="flex gap-3 p-3 -m-3 items-start">
           <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
             –
@@ -148,7 +148,7 @@ function CurrentProjects() {
       <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 sm:mb-4 sm:text-xl">
         Current Projects
       </h3>
-      <ul className="space-y-2 text-sm font-light leading-relaxed text-muted-foreground sm:text-base">
+      <ul className="space-y-2 font-light leading-relaxed text-muted-foreground text-base sm:text-lg">
         <li className="flex items-start gap-3">
           <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
             –
@@ -167,7 +167,7 @@ function CurrentProjects() {
 
 function SocialLinks() {
   return (
-    <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-pretty text-sm font-light leading-relaxed text-muted-foreground sm:text-lg">
+    <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg ">
       <ExternalLink href="https://git.new/vldzn">GitHub</ExternalLink>
 
       <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>

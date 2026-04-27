@@ -71,16 +71,16 @@ export function Hero() {
 function Intro() {
   return (
     <p className="mx-auto max-w-prose text-pretty text-center text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
-      I'm a product-minded generalist with{" "}
+      I'm a pragmatic product engineer with{" "}
       <span className="text-primary font-semibold">
         8+ years of experience{" "}
       </span>
-      building and shipping web products using{" "}
+      building and shipping web products with{" "}
       <span className="text-primary font-semibold">
         React, Next.js, and TypeScript
       </span>
-      . I like owning products end-to-end, bridging engineering, design, and
-      product to ship things that are useful, usable, and well-crafted.
+      . I own products from idea to production, focusing on speed, usability,
+      and delivering well-crafted solutions that provide real user value.
     </p>
   );
 }
@@ -167,14 +167,13 @@ function CurrentProjects() {
 
 function SocialLinks() {
   return (
-    <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-pretty text-sm font-light leading-relaxed text-muted-foreground sm:text-base">
+    <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-pretty text-sm font-light leading-relaxed text-muted-foreground sm:text-lg">
       <ExternalLink href="https://git.new/vldzn">GitHub</ExternalLink>
 
+      <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
       <ExternalLink href="https://www.linkedin.com/in/vlad-sazonau-22a9a9126">
         LinkedIn
       </ExternalLink>
-
-      <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
     </div>
   );
 }

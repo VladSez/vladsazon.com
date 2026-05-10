@@ -70,18 +70,27 @@ export function Hero() {
 
 function Intro() {
   return (
-    <p className="mx-auto max-w-prose text-pretty text-center text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
-      I'm a pragmatic product engineer with{" "}
-      <span className="text-primary font-semibold">
-        8+ years of experience{" "}
-      </span>
-      building and shipping web products with{" "}
-      <span className="text-primary font-semibold">
-        React, Next.js, and TypeScript
-      </span>
-      . I own products from idea to production, focusing on speed, usability,
-      and delivering well-crafted solutions that provide real user value.
-    </p>
+    <div className="space-y-7">
+      <p className="mx-auto max-w-prose text-pretty text-center text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
+        I'm a pragmatic product engineer with{" "}
+        <span className="text-primary font-semibold">
+          8+ years of experience{" "}
+        </span>
+        building and shipping web products with{" "}
+        <span className="text-primary font-semibold">
+          React, Next.js, TypeScript, Node.js and shadcn/ui.
+        </span>
+        . Comfortable owning products end-to-end - from idea, prototyping, and
+        UX decisions to production infrastructure and scaling.
+      </p>
+      <p className="mx-auto max-w-prose text-pretty text-center text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
+        Deeply integrated AI into my engineering workflow using tools like{" "}
+        <span className="text-primary font-semibold">
+          Cursor, Claude Code/OpenCode, and modern agentic development patterns
+        </span>
+        .
+      </p>
+    </div>
   );
 }
 
@@ -94,7 +103,7 @@ function Highlights() {
       <ul className="space-y-3 text-base text-muted-foreground leading-relaxed font-light sm:text-lg">
         <li className="flex gap-3 p-3 -m-3 items-start">
           <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
-            –
+            👉
           </span>
           <span className="text-pretty min-w-0">
             Built{" "}
@@ -103,7 +112,7 @@ function Highlights() {
             </ExternalLink>
             , an open-source invoice generator with{" "}
             <span className="text-primary font-semibold">
-              750+ GitHub stars
+              800+ GitHub stars
             </span>
             , averaging{" "}
             <span className="text-primary font-semibold">
@@ -116,7 +125,7 @@ function Highlights() {
         </li>
         <li className="flex gap-3 p-3 -m-3 items-start">
           <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
-            –
+            👉
           </span>
           <span className="text-pretty min-w-0">
             Contributed to major OSS projects{" "}
@@ -128,7 +137,7 @@ function Highlights() {
         </li>
         <li className="flex gap-3 p-3 -m-3 items-start">
           <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
-            –
+            👉
           </span>
           <span className="text-pretty min-w-0">
             Featured in a large IT Telegram channel{" "}
@@ -168,7 +177,7 @@ function CurrentProjects() {
 function SocialLinks() {
   return (
     <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg ">
-      <ExternalLink href="https://git.new/vldzn">GitHub</ExternalLink>
+      <ExternalLink href="https://github.com/VladSez">GitHub</ExternalLink>
 
       <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
       <ExternalLink href="https://www.linkedin.com/in/vlad-sazonau-22a9a9126">

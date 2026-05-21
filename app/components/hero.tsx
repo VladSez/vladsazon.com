@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AnimatedDiv, AnimatedParagraph } from "../../components/motion";
 import { ExternalLink } from "@/components/external-link";
 import type { Transition } from "motion/react";
@@ -183,6 +184,12 @@ function SocialLinks() {
       <ExternalLink href="https://www.linkedin.com/in/vlad-sazonau-22a9a9126">
         LinkedIn
       </ExternalLink>
+      <Link
+        href="/blog/easyinvoicepdf"
+        className="text-blue-700 hover:text-blue-500 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 font-medium"
+      >
+        Blog
+      </Link>
     </div>
   );
 }

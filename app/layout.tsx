@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     "personal website",
     "vlad sazonau",
     "Vlad Sazonau",
+    "Vlad Sazon",
     "Uladzislau Sazonanu",
     "personal website",
     "porfolio",

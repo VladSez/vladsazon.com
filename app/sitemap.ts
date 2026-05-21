@@ -8,5 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 1,
     },
+    {
+      url: "https://vladsazon.com/blog/easyinvoicepdf",
+      lastModified: new Date("2026-05-21"),
+      changeFrequency: "daily",
+      priority: 1,
+    },
   ];
 }

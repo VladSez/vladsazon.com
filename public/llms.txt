@@ -17,6 +17,10 @@
 - [GitHub](https://github.com/VladSez): Open-source work and repositories.
 - [LinkedIn](https://www.linkedin.com/in/vlad-sazonau-22a9a9126): Professional profile.
 
+## Writing
+
+- [EasyInvoicePDF: The Free, Open-Source Invoice Generator You've Been Looking For](https://vladsazon.com/blog/easyinvoicepdf): Article about EasyInvoicePDF — a completely free, open-source invoice generator with live PDF preview, no sign-up required, 10 languages, 120+ currencies, flexible tax support (VAT, GST, Sales Tax), shareable links, and custom branding. All in-browser.
+
 ## Optional
 
 - [Web app manifest](https://vladsazon.com/site.webmanifest): PWA metadata for vladsazon.com (icons, theme).

@@ -136,7 +136,7 @@ export default function EasyInvoicePDFArticle() {
             </p>
           </header>
 
-          <figure className="mb-10 rounded-lg overflow-hidden border border-border bg-muted">
+          <figure className="mb-10 rounded-xl overflow-hidden border border-border bg-muted">
             <img
               src="https://static.easyinvoicepdf.com/seo-content/default-template-v1.png"
               alt="EasyInvoicePDF default invoice template showing a professional invoice layout with seller and buyer details, line items, and VAT calculation."
@@ -296,6 +296,16 @@ export default function EasyInvoicePDFArticle() {
                 </span>
                 , so your company branding appears on the invoice.
               </p>
+              <div className="mt-4 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                <img
+                  src="https://static.easyinvoicepdf.com/seo-content/stripe-template-v1.png"
+                  alt="EasyInvoicePDF Stripe-style invoice template"
+                  className="w-full h-auto"
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                />
+              </div>
             </section>
 
             <section>

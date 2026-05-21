@@ -42,7 +42,7 @@ export const AnimatedHeading = ({
       animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={transition}
       className={cn(
-        "text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-8 text-balance text-gray-950 leading-tight tracking-tight",
+        "text-2xl md:text-3xl lg:text-4xl font-medium text-muted-foreground leading-relaxed text-pretty",
         className
       )}
     >

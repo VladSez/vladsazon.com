@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { AnimatedDiv, AnimatedParagraph } from "../../components/motion";
+import {
+  AnimatedDiv,
+  AnimatedHeading,
+  AnimatedParagraph,
+} from "../../components/motion";
 import { ExternalLink } from "@/components/external-link";
 import type { Transition } from "motion/react";
 
@@ -35,12 +39,12 @@ export function Hero() {
             className="size-32 rounded-full object-cover outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10"
           />
         </AnimatedDiv>
-        <AnimatedParagraph
+        <AnimatedHeading
           transition={blockEnterSpring(0.18)}
           className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-7 text-balance text-gray-950 leading-[1.05] tracking-tight sm:leading-[1.02]"
         >
           Vlad Sazonau
-        </AnimatedParagraph>
+        </AnimatedHeading>
         <div className="space-y-7 text-center md:space-y-9 lg:px-8">
           <AnimatedParagraph
             transition={blockEnterSpring(0.42)}

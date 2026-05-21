@@ -6,9 +6,9 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Vlad Sazonau",
+  title: "Vlad Sazonau | Software Engineer & Design Enthusiast",
   description:
-    "Vlad Sazonau personal website. Vlad Sazonau is a product engineer and design enthusiast.",
+    "Vlad Sazonau is a software engineer and design enthusiast. He is the founder of EasyInvoicePDF, a free, open-source invoice generator.",
   authors: [{ name: "Vlad Sazonau" }],
   keywords: [
     "frontend development",

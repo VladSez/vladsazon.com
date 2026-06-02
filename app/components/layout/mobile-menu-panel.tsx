@@ -75,6 +75,8 @@ export function MobileMenuPanel({ onOpenChange }: MobileMenuPanelProps) {
       >
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
+          const isExternal = "isExternal" in item && item?.isExternal === true;
+
           return (
             <motion.div
               key={item.href}
@@ -82,13 +84,18 @@ export function MobileMenuPanel({ onOpenChange }: MobileMenuPanelProps) {
             >
               <Link
                 href={item.href}
-                onClick={() => onOpenChange(false)}
-                className={`block px-4 py-2 rounded text-sm font-medium transition-colors  hover:bg-primary/5 ${
+                onClick={() => {
+                  onOpenChange(false);
+                }}
+                className={cn(
+                  "block px-4 py-2 rounded text-sm font-medium transition-colors hover:bg-primary/5",
                   isActive
                     ? "bg-primary/10 text-primary hover:bg-primary/15"
                     : "text-foreground"
-                }`}
+                )}
                 aria-current={isActive ? "page" : undefined}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
               >
                 {item.label}
               </Link>

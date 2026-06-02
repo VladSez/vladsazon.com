@@ -134,7 +134,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <div className="fixed top-[24px] lg:top-4 right-16 lg:right-4 z-50 text-sm text-muted-foreground">
+        <div className="fixed top-[26px] lg:top-4 right-16 lg:right-4 z-50 text-sm text-muted-foreground">
           <Clock />
         </div>
         <MobileHeader />

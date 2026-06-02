@@ -30,7 +30,7 @@ export function MobileHeader() {
               type="button"
               size="icon"
               variant="ghost"
-              className="rounded-full shadow-none"
+              className="rounded-full shadow-none active:opacity-70 cursor-pointer size-10"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
               {...(!isMobileMenuOpen
@@ -40,8 +40,8 @@ export function MobileHeader() {
             >
               <MorphingMenuIcon
                 isOpen={isMobileMenuOpen}
-                className="size-5"
                 aria-hidden
+                className="!size-5"
               />
             </Button>
           </div>

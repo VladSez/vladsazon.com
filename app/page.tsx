@@ -1,13 +1,12 @@
-import Link from "next/link";
+import { ExternalLink } from "@/components/external-link";
 import {
   AnimatedDiv,
   AnimatedHeading,
   AnimatedHeading2,
-  AnimatedParagraph,
 } from "@/components/motion";
-import { ExternalLink } from "@/components/external-link";
-import type { Transition } from "motion/react";
 import { SOCIAL_LINKS } from "@/lib/config";
+import type { Transition } from "motion/react";
+import Link from "next/link";
 
 const AVATAR_SRC =
   "https://ik.imagekit.io/fl2lbswwo/avatar.jpeg?updatedAt=1757456439459";

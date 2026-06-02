@@ -104,7 +104,15 @@ export const AnimatedListItem = ({
 export const AnimatedDiv = ({
   children,
   className,
-  transition,
+  transition = {
+    type: "spring",
+    stiffness: 100,
+    damping: 15,
+    mass: 1,
+    bounce: 0,
+    duration: 0.3,
+    delay: 0.06,
+  },
 }: {
   children: React.ReactNode;
   className?: string;

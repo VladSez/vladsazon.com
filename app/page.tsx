@@ -1,21 +1,209 @@
-import { Hero } from "@/app/components/hero";
-import { Clock } from "@/components/clock";
-import { AnimatedSignature } from "./components/animated-signature";
+import Link from "next/link";
+import {
+  AnimatedDiv,
+  AnimatedHeading,
+  AnimatedParagraph,
+} from "@/components/motion";
+import { ExternalLink } from "@/components/external-link";
+import type { Transition } from "motion/react";
+import { SOCIAL_LINKS } from "@/lib/config";
 
-export default function Home() {
+const AVATAR_SRC =
+  "https://ik.imagekit.io/fl2lbswwo/avatar.jpeg?updatedAt=1757456439459";
+
+const blockEnterSpring = (delay: number): Transition => ({
+  type: "spring",
+  stiffness: 100,
+  damping: 15,
+  mass: 1,
+  bounce: 0,
+  duration: 0.3,
+  delay,
+});
+
+export default function AboutPage() {
   return (
     <>
-      <div className="min-h-screen">
-        <div className="fixed top-4 right-4 z-50 text-sm text-muted-foreground">
-          <Clock />
+      <AnimatedDiv
+        transition={blockEnterSpring(0.06)}
+        className="mb-5 sm:mb-7 flex justify-start md:hidden"
+      >
+        <img
+          src={AVATAR_SRC}
+          alt="Portrait of Vlad Sazonau wearing glasses and a light shirt, outdoors in front of a sunlit glass building."
+          width={128}
+          height={128}
+          loading="lazy"
+          fetchPriority="high"
+          decoding="async"
+          className="size-32 rounded-full object-cover outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10"
+        />
+      </AnimatedDiv>
+      <AnimatedHeading
+        transition={blockEnterSpring(0.18)}
+        className="font-bold tracking-tight leading-none text-slate-800 dark:text-slate-200 text-balance mb-3 text-3xl md:text-4xl"
+      >
+        Vlad Sazonau
+      </AnimatedHeading>
+      <div className="space-y-10 lg:px-0">
+        <AnimatedParagraph
+          transition={blockEnterSpring(0.42)}
+          className="text-lg sm:text-xl md:text-xl lg:text-2xl font-medium text-muted-foreground leading-snug text-pretty tracking-tight"
+        >
+          Product Engineer & Design Enthusiast
+        </AnimatedParagraph>
+
+        <div className="mx-auto max-w-2xl space-y-7 md:space-y-9">
+          <AnimatedDiv transition={blockEnterSpring(0.62)}>
+            <Intro />
+          </AnimatedDiv>
+          <AnimatedDiv transition={blockEnterSpring(0.74)}>
+            <Highlights />
+          </AnimatedDiv>
+          <AnimatedDiv transition={blockEnterSpring(0.86)}>
+            <CurrentProjects />
+          </AnimatedDiv>
+          <AnimatedDiv transition={blockEnterSpring(0.98)}>
+            <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
+              Open Source Contributions
+            </h3>
+            <p className="text-base text-muted-foreground leading-relaxed">
+              Contributed to major OSS projects{" "}
+              <span className="text-primary font-semibold">
+                (zod, gumroad, cal.com, flexile)
+              </span>{" "}
+              and received bounties.
+            </p>
+          </AnimatedDiv>
+
+          <AnimatedDiv transition={blockEnterSpring(0.98)}>
+            <SocialLinks />
+          </AnimatedDiv>
         </div>
-        <main className="mb-20">
-          <Hero />
-          <div className="flex justify-center">
-            <AnimatedSignature />
-          </div>
-        </main>
       </div>
     </>
+  );
+}
+
+function Intro() {
+  return (
+    <div className="space-y-7">
+      <p className="mx-auto max-w-prose text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
+        I'm a pragmatic product engineer with{" "}
+        <span className="text-primary font-semibold">
+          8+ years of experience{" "}
+        </span>
+        building and shipping web products with{" "}
+        <span className="text-primary font-semibold">
+          React, Next.js, TypeScript, Node.js and shadcn/ui.
+        </span>
+        . Comfortable owning products end-to-end - from idea, prototyping, and
+        UX decisions to production infrastructure and scaling.
+      </p>
+      <p className="mx-auto max-w-prose text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
+        Deeply integrated AI into my engineering workflow using tools like{" "}
+        <span className="text-primary font-semibold">
+          Cursor, Claude Code/OpenCode, and modern agentic development patterns
+        </span>
+        .
+      </p>
+    </div>
+  );
+}
+
+function Highlights() {
+  return (
+    <div className="rounded-2xl border border-border bg-card p-5 text-left sm:p-7 md:p-8">
+      <h3 className="mb-4 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-5 sm:text-xl">
+        Highlights
+      </h3>
+      <ul className="space-y-3 text-base text-muted-foreground leading-relaxed font-light sm:text-lg">
+        <li className="flex gap-3 p-3 -m-3 items-start">
+          <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
+            👉
+          </span>
+          <span className="text-pretty min-w-0">
+            Built{" "}
+            <ExternalLink href="https://github.com/VladSez/easy-invoice-pdf">
+              EasyInvoicePDF
+            </ExternalLink>
+            , an open-source invoice generator with{" "}
+            <span className="text-primary font-semibold">
+              800+ GitHub stars
+            </span>
+            , averaging{" "}
+            <span className="text-primary font-semibold">
+              2k monthly visitors
+            </span>
+            , and{" "}
+            <span className="text-primary font-semibold">1k+ invoices</span>{" "}
+            generated.
+          </span>
+        </li>
+        <li className="flex gap-3 p-3 -m-3 items-start">
+          <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
+            👉
+          </span>
+          <span className="text-pretty min-w-0">
+            Contributed to major OSS projects{" "}
+            <span className="text-primary font-semibold">
+              (zod, gumroad, cal.com, flexile)
+            </span>{" "}
+            and received bounties
+          </span>
+        </li>
+        <li className="flex gap-3 p-3 -m-3 items-start">
+          <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
+            👉
+          </span>
+          <span className="text-pretty min-w-0">
+            Featured in a large IT Telegram channel{" "}
+            <span className="text-primary font-semibold">
+              (50k+ subscribers)
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+function CurrentProjects() {
+  return (
+    <div className="text-left">
+      <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
+        Projects
+      </h3>
+      <ul className="space-y-2 font-light leading-relaxed text-muted-foreground text-base sm:text-lg">
+        <li className="flex items-start gap-3">
+          <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
+            –
+          </span>
+          <span className="text-pretty min-w-0">
+            <ExternalLink href="https://easyinvoicepdf.com/?template=stripe&ref=vladsazon.com">
+              EasyInvoicePDF
+            </ExternalLink>{" "}
+            - Free & Open-Source Invoice Generator
+          </span>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+function SocialLinks() {
+  return (
+    <div className="flex flex-wrap justify-start gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
+      <ExternalLink href={SOCIAL_LINKS.GITHUB}>GitHub</ExternalLink>
+
+      <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
+      <ExternalLink href={SOCIAL_LINKS.LINKEDIN}>LinkedIn</ExternalLink>
+      <Link
+        href="/projects"
+        className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium"
+      >
+        Projects
+      </Link>
+    </div>
   );
 }

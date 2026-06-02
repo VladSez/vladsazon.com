@@ -22,7 +22,7 @@ export function Sidebar() {
             aria-current={pathname === "/" ? "page" : undefined}
           >
             <img
-              alt="Vlad Sazonau"
+              alt="Portrait of Vlad Sazonau wearing glasses and a light shirt, outdoors in front of a sunlit glass building."
               height={48}
               width={48}
               fetchPriority="high"

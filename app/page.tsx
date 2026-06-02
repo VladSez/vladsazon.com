@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   AnimatedDiv,
   AnimatedHeading,
+  AnimatedHeading2,
   AnimatedParagraph,
 } from "@/components/motion";
 import { ExternalLink } from "@/components/external-link";
@@ -12,12 +13,8 @@ const AVATAR_SRC =
   "https://ik.imagekit.io/fl2lbswwo/avatar.jpeg?updatedAt=1757456439459";
 
 const blockEnterSpring = (delay: number): Transition => ({
-  type: "spring",
-  stiffness: 100,
-  damping: 15,
-  mass: 1,
-  bounce: 0,
-  duration: 0.3,
+  duration: 0.4,
+  ease: [0.22, 1, 0.36, 1],
   delay,
 });
 
@@ -41,17 +38,17 @@ export default function AboutPage() {
       </AnimatedDiv>
       <AnimatedHeading
         transition={blockEnterSpring(0.18)}
-        className="font-bold tracking-tight leading-none text-slate-800 dark:text-slate-200 text-balance mb-3 text-3xl md:text-4xl"
+        className="font-bold tracking-tight leading-none text-gray-950 dark:text-gray-50 text-balance mb-3 text-3xl md:text-4xl lg:text-5xl"
       >
         Vlad Sazonau
       </AnimatedHeading>
       <div className="space-y-10 lg:px-0">
-        <AnimatedParagraph
+        <AnimatedHeading2
           transition={blockEnterSpring(0.42)}
-          className="text-lg sm:text-xl md:text-xl lg:text-2xl font-medium text-muted-foreground leading-snug text-pretty tracking-tight"
+          className="font-medium text-muted-foreground leading-snug text-pretty tracking-tight"
         >
-          Product Engineer & Design Enthusiast
-        </AnimatedParagraph>
+          Software Engineer & Design Enthusiast
+        </AnimatedHeading2>
 
         <div className="mx-auto max-w-2xl space-y-7 md:space-y-9">
           <AnimatedDiv transition={blockEnterSpring(0.62)}>
@@ -198,6 +195,7 @@ function SocialLinks() {
 
       <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
       <ExternalLink href={SOCIAL_LINKS.LINKEDIN}>LinkedIn</ExternalLink>
+      <ExternalLink href={SOCIAL_LINKS.X}>X</ExternalLink>
       <Link
         href="/projects"
         className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium"

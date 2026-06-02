@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
 
 import { SlidingNumber } from "@/components/sliding-number";
 import {
@@ -9,6 +8,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  motion,
+  type TargetAndTransition,
+  type Transition,
+} from "motion/react";
 
 export function Clock() {
   const [date, setDate] = useState<Date | null>(null);
@@ -47,9 +51,9 @@ export function Clock() {
         <TooltipTrigger asChild>
           <motion.div
             className="flex items-center gap-0.5 font-mono cursor-help"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial={initial}
+            animate={animate}
+            transition={transition}
           >
             <SlidingNumber value={hours} padStart={true} />
             <span className="text-zinc-500">:</span>
@@ -78,3 +82,21 @@ export function Clock() {
     </>
   );
 }
+
+const transition = {
+  duration: 0.4,
+  ease: [0.22, 1, 0.36, 1],
+  delay: 0.06,
+} as const satisfies Transition;
+
+const initial = {
+  opacity: 0,
+  filter: "blur(10px)",
+  y: 20,
+} as const satisfies TargetAndTransition;
+
+const animate = {
+  opacity: 1,
+  filter: "blur(0px)",
+  y: 0,
+} as const satisfies TargetAndTransition;

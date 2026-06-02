@@ -1,9 +1,14 @@
 import { ExternalLink } from "@/components/external-link";
 import { SOCIAL_LINKS } from "@/lib/config";
+import { projectsJsonLd } from "@/lib/json-ld";
 
 export default function ProjectsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
+      />
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-gray-950 dark:text-gray-50 text-balance">
         Projects
       </h1>

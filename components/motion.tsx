@@ -51,6 +51,27 @@ export const AnimatedHeading = ({
   );
 };
 
+export const AnimatedHeading2 = ({
+  children,
+  className,
+  transition,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  transition?: Transition;
+}) => {
+  return (
+    <motion.h2
+      initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+      animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      transition={transition}
+      className={cn("text-lg sm:text-xl md:text-xl lg:text-2xl", className)}
+    >
+      {children}
+    </motion.h2>
+  );
+};
+
 export const AnimatedImage = ({
   src,
   alt,
@@ -105,12 +126,8 @@ export const AnimatedDiv = ({
   children,
   className,
   transition = {
-    type: "spring",
-    stiffness: 100,
-    damping: 15,
-    mass: 1,
-    bounce: 0,
-    duration: 0.3,
+    duration: 0.4,
+    ease: [0.22, 1, 0.36, 1],
     delay: 0.06,
   },
 }: {

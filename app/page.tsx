@@ -177,7 +177,7 @@ function CurrentProjects() {
             –
           </span>
           <span className="text-pretty min-w-0">
-            <ExternalLink href="https://easyinvoicepdf.com/?template=stripe&ref=vladsazon.com">
+            <ExternalLink href="https://easyinvoicepdf.com">
               EasyInvoicePDF
             </ExternalLink>{" "}
             - Free & Open-Source Invoice Generator
@@ -191,17 +191,16 @@ function CurrentProjects() {
 function SocialLinks() {
   return (
     <div className="flex flex-wrap justify-start gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
-      <ExternalLink href={SOCIAL_LINKS.GITHUB}>GitHub</ExternalLink>
-
-      <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
-      <ExternalLink href={SOCIAL_LINKS.LINKEDIN}>LinkedIn</ExternalLink>
-      <ExternalLink href={SOCIAL_LINKS.X}>X</ExternalLink>
       <Link
         href="/projects"
         className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium"
       >
         Projects
       </Link>
+      <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
+      <ExternalLink href={SOCIAL_LINKS.GITHUB}>GitHub</ExternalLink>
+      <ExternalLink href={SOCIAL_LINKS.LINKEDIN}>LinkedIn</ExternalLink>
+      <ExternalLink href={SOCIAL_LINKS.X}>X</ExternalLink>
     </div>
   );
 }

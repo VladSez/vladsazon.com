@@ -22,8 +22,8 @@ const geistMono = Geist_Mono({
   preload: true,
 });
 
-const OG_IMAGE =
-  "https://ik.imagekit.io/fl2lbswwo/vlad-sazonau-og-2026.png?updatedAt=1780359424401";
+const OG_IMAGE_URL =
+  "https://ik.imagekit.io/fl2lbswwo/vlad-sazon-og-2026.png?updatedAt=1780399067030";
 
 export const metadata: Metadata = {
   title: "Vlad Sazonau | Software Engineer & Design Enthusiast",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: OG_IMAGE,
+        url: OG_IMAGE_URL,
         alt: "Vlad Sazonau is a software engineer and design enthusiast.",
       },
     ],
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     description: "Vlad Sazonau is a software engineer and design enthusiast.",
     images: [
       {
-        url: OG_IMAGE,
+        url: OG_IMAGE_URL,
         alt: "Vlad Sazonau is a software engineer and design enthusiast.",
       },
     ],

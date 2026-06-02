@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
 
 import { SlidingNumber } from "@/components/sliding-number";
 import {
@@ -9,7 +8,17 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  motion,
+  type TargetAndTransition,
+  type Transition,
+} from "motion/react";
 
+/**
+ * A live-updating digital clock component displaying the current local time (hours, minutes, seconds).
+ * Includes a tooltip showing the full date and timezone offset.
+ * Runs only on the client side to prevent hydration issues.
+ */
 export function Clock() {
   const [date, setDate] = useState<Date | null>(null);
 
@@ -46,10 +55,10 @@ export function Clock() {
       <Tooltip>
         <TooltipTrigger asChild>
           <motion.div
-            className="flex items-center gap-0.5 font-mono cursor-help"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="flex items-center gap-0.5 font-mono cursor-help hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors duration-200"
+            initial={initial}
+            animate={animate}
+            transition={transition}
           >
             <SlidingNumber value={hours} padStart={true} />
             <span className="text-zinc-500">:</span>
@@ -78,3 +87,21 @@ export function Clock() {
     </>
   );
 }
+
+const transition = {
+  duration: 0.4,
+  ease: [0.22, 1, 0.36, 1],
+  delay: 0.06,
+} as const satisfies Transition;
+
+const initial = {
+  opacity: 0,
+  filter: "blur(10px)",
+  y: 20,
+} as const satisfies TargetAndTransition;
+
+const animate = {
+  opacity: 1,
+  filter: "blur(0px)",
+  y: 0,
+} as const satisfies TargetAndTransition;

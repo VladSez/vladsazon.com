@@ -9,10 +9,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: "https://vladsazon.com/blog/easyinvoicepdf",
-      lastModified: new Date("2026-05-21"),
+      url: "https://vladsazon.com/projects",
+      lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
+    },
+    {
+      url: "https://vladsazon.com/blog/easyinvoicepdf",
+      lastModified: new Date("2026-05-21"),
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
   ];
 }

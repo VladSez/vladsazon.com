@@ -124,6 +124,6 @@
   }
 
   ::selection {
-    @apply bg-pink-400 text-white;
+    @apply bg-[#1c91f1] text-white;
   }
 }

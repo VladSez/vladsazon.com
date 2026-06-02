@@ -1,9 +1,29 @@
-import type React from "react";
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { MobileHeader } from "@/app/components/layout/mobile-header";
+import { Sidebar } from "@/app/components/layout/sidebar";
+import { Clock } from "@/components/clock";
 import { Analytics } from "@vercel/analytics/next";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import type React from "react";
+
+import { Copyright } from "@/components/ui/copyright";
+import { personJsonLd } from "@/lib/json-ld";
 import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  preload: true,
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  preload: true,
+});
+
+const OG_IMAGE_URL =
+  "https://ik.imagekit.io/fl2lbswwo/vlad-sazon-og-2026.png?updatedAt=1780399067030";
 
 export const metadata: Metadata = {
   title: "Vlad Sazonau | Software Engineer & Design Enthusiast",
@@ -50,12 +70,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Vlad Sazonau",
-    description: "Vlad Sazonau personal website.",
+    description: "Vlad Sazonau is a software engineer and design enthusiast.",
     type: "website",
     images: [
       {
-        url: "https://ik.imagekit.io/fl2lbswwo/vladsazon-og-1.png?updatedAt=1759593592814",
-        alt: "Vlad Sazonau personal website.",
+        url: OG_IMAGE_URL,
+        alt: "Vlad Sazonau is a software engineer and design enthusiast.",
       },
     ],
     siteName: "vladsazon.com",
@@ -64,11 +84,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Vlad Sazonau",
-    description: "Vlad Sazonau personal website.",
+    description: "Vlad Sazonau is a software engineer and design enthusiast.",
     images: [
       {
-        url: "https://ik.imagekit.io/fl2lbswwo/vladsazon-og-1.png?updatedAt=1759593592814",
-        alt: "Vlad Sazonau personal website.",
+        url: OG_IMAGE_URL,
+        alt: "Vlad Sazonau is a software engineer and design enthusiast.",
       },
     ],
   },
@@ -108,9 +128,29 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
+        className={`font-sans ${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
-        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <div className="fixed top-[26px] lg:top-4 right-16 lg:right-4 z-50 text-sm text-muted-foreground">
+          <Clock />
+        </div>
+        <MobileHeader />
+        <div className="mx-5 mt-20 flex max-w-4xl flex-1 flex-col md:mt-20 md:flex-row lg:mx-auto lg:mt-32 lg:w-full lg:px-6">
+          <Sidebar />
+          <main className="flex w-full flex-col break-words mt-5 lg:mt-0">
+            <div className="w-full flex-1 md:w-9/12">
+              <section className="flex items-center justify-center px-0 lg:px-0 mb-20">
+                <div className="mx-auto w-full max-w-5xl">{children}</div>
+              </section>
+              <div className="flex items-center justify-between text-xs mb-10 text-muted-foreground">
+                <Copyright />
+              </div>
+            </div>
+          </main>
+        </div>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

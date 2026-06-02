@@ -36,12 +36,17 @@ export function Sidebar() {
           <ul className="flex flex-col items-start gap-3">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
+              const isExternal =
+                "isExternal" in item && item?.isExternal === true;
+
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="flex items-center pl-7 text-sm font-medium whitespace-nowrap transition-opacity hover:opacity-90"
+                    className="flex items-center pl-7 text-sm font-medium whitespace-nowrap transition-opacity active:opacity-70 hover:opacity-90"
                     aria-current={isActive ? "page" : undefined}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
                   >
                     <span
                       className={

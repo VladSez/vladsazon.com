@@ -14,6 +14,11 @@ import {
   type Transition,
 } from "motion/react";
 
+/**
+ * A live-updating digital clock component displaying the current local time (hours, minutes, seconds).
+ * Includes a tooltip showing the full date and timezone offset.
+ * Runs only on the client side to prevent hydration issues.
+ */
 export function Clock() {
   const [date, setDate] = useState<Date | null>(null);
 
@@ -50,7 +55,7 @@ export function Clock() {
       <Tooltip>
         <TooltipTrigger asChild>
           <motion.div
-            className="flex items-center gap-0.5 font-mono cursor-help"
+            className="flex items-center gap-0.5 font-mono cursor-help hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors duration-200"
             initial={initial}
             animate={animate}
             transition={transition}

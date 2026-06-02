@@ -3,6 +3,7 @@ import { SOCIAL_LINKS } from "@/lib/config";
 export interface NavItem {
   label: string;
   href: string;
+  isExternal?: boolean;
 }
 
 export const NAV_ITEMS = [
@@ -26,9 +27,11 @@ export const NAV_ITEMS = [
   {
     label: "GitHub",
     href: SOCIAL_LINKS.GITHUB,
+    isExternal: true,
   },
   {
     label: "LinkedIn",
     href: SOCIAL_LINKS.LINKEDIN,
+    isExternal: true,
   },
 ] as const satisfies NavItem[];

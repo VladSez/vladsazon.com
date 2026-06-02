@@ -58,9 +58,6 @@ export default function AboutPage() {
             <Highlights />
           </AnimatedDiv>
           <AnimatedDiv transition={blockEnterSpring(0.86)}>
-            <CurrentProjects />
-          </AnimatedDiv>
-          <AnimatedDiv transition={blockEnterSpring(0.98)}>
             <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
               Open Source Contributions
             </h3>
@@ -100,7 +97,11 @@ function Intro() {
       <p className="mx-auto max-w-prose text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
         Deeply integrated AI into my engineering workflow using tools like{" "}
         <span className="text-primary font-semibold">
-          Cursor, Claude Code/OpenCode, and modern agentic development patterns
+          Cursor, Claude Code/OpenCode, Codex,
+        </span>{" "}
+        and modern{" "}
+        <span className="text-primary font-semibold">
+          agentic development patterns
         </span>
         .
       </p>
@@ -126,7 +127,7 @@ function Highlights() {
             </ExternalLink>
             , an open-source invoice generator with{" "}
             <span className="text-primary font-semibold">
-              800+ GitHub stars
+              850+ GitHub stars
             </span>
             , averaging{" "}
             <span className="text-primary font-semibold">
@@ -165,35 +166,12 @@ function Highlights() {
   );
 }
 
-function CurrentProjects() {
-  return (
-    <div className="text-left">
-      <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
-        Projects
-      </h3>
-      <ul className="space-y-2 font-light leading-relaxed text-muted-foreground text-base sm:text-lg">
-        <li className="flex items-start gap-3">
-          <span className="flex-shrink-0 pt-0.5 text-muted-foreground/70 select-none">
-            –
-          </span>
-          <span className="text-pretty min-w-0">
-            <ExternalLink href="https://easyinvoicepdf.com">
-              EasyInvoicePDF
-            </ExternalLink>{" "}
-            - Free & Open-Source Invoice Generator
-          </span>
-        </li>
-      </ul>
-    </div>
-  );
-}
-
 function SocialLinks() {
   return (
     <div className="flex flex-wrap justify-start gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
       <Link
         href="/projects"
-        className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium"
+        className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium active:opacity-70"
       >
         Projects
       </Link>

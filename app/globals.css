@@ -119,6 +119,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html,
+  body {
+    /* fix to avoid scroll jumping on ios when loading page */
+    -webkit-overflow-scrolling: auto;
+    overflow-anchor: none;
+  }
+
   body {
     @apply bg-background text-foreground;
   }

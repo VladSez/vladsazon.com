@@ -86,6 +86,14 @@ export default function AboutPage() {
           <AnimatedDiv transition={blockEnterSpring(0.98)}>
             <SocialLinks />
           </AnimatedDiv>
+          <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground">
+            <ExternalLink
+              href="/llms/home.md"
+              className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
+            >
+              View page as Markdown
+            </ExternalLink>
+          </div>
         </div>
       </div>
     </>

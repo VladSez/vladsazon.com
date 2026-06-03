@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["monotone-rotunda-parish.ngrok-free.dev"],
   /* config options here */
   async redirects() {
     return [

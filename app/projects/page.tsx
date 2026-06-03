@@ -77,6 +77,15 @@ export default function ProjectsPage() {
           </div>
         </li>
       </ul>
+
+      <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground">
+        <ExternalLink
+          href="/llms/projects.md"
+          className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
+        >
+          View page as Markdown
+        </ExternalLink>
+      </div>
     </>
   );
 }

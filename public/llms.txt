@@ -5,7 +5,11 @@
 ## Site
 
 - [Home](https://vladsazon.com/): Landing page with bio, highlights, current projects, and outbound links.
+  - [Home (Markdown)](https://vladsazon.com/llms/home.md): Full text export of the home page.
+- [Projects](https://vladsazon.com/projects): List of projects by Vlad Sazonau. EasyInvoicePDF - a free & open-source invoice generator made by Vlad Sazonau.
+  - [Projects (Markdown)](https://vladsazon.com/llms/projects.md): Full text export of the projects page.
 - [CV (PDF)](https://vladsazon.com/vlad-sazon-cv.pdf): Resume in PDF form.
+  - [CV (Markdown)](https://vladsazon.com/llms/cv.md): Full text export of the CV.
 
 ## Projects
 

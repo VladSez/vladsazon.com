@@ -5,5 +5,5 @@
  * Used as a site footer or copyright notice element.
  */
 export function Copyright() {
-  return <div>© {new Date().getFullYear()} Vlad Sazonau</div>;
+  return <span>© {new Date().getFullYear()} Vlad Sazonau</span>;
 }

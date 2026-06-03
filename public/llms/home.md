@@ -15,7 +15,7 @@ Deeply integrated AI into my engineering workflow using tools like **Cursor, Cla
 
 ## Highlights
 
-- **Built EasyInvoicePDF**, an open-source invoice generator with **850+ GitHub stars**, averaging **2k monthly visitors**, and **1k+ invoices** generated.
+- **Built EasyInvoicePDF**, an open-source invoice generator with **880+ GitHub stars**, averaging **2k monthly visitors**, and **1k+ invoices** generated.
 - **Contributed to major OSS projects** (zod, gumroad, cal.com, flexile) and received bounties.
 - **Featured in a large IT Telegram channel** (50k+ subscribers).
 

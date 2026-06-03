@@ -117,7 +117,7 @@ function Highlights() {
             </ExternalLink>
             , an open-source invoice generator with{" "}
             <span className="text-primary font-semibold">
-              800+ GitHub stars
+              880+ GitHub stars
             </span>
             , averaging{" "}
             <span className="text-primary font-semibold">
@@ -168,7 +168,7 @@ function CurrentProjects() {
             –
           </span>
           <span className="text-pretty min-w-0">
-            <ExternalLink href="https://easyinvoicepdf.com/?template=stripe&ref=vladsazon.com">
+            <ExternalLink href="https://easyinvoicepdf.com">
               EasyInvoicePDF
             </ExternalLink>{" "}
             - Free & Open-Source Invoice Generator

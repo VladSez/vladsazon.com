@@ -4,21 +4,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: "https://vladsazon.com",
-      lastModified: new Date(),
-      changeFrequency: "daily",
+      lastModified: "2026-06-01",
       priority: 1,
     },
     {
       url: "https://vladsazon.com/projects",
-      lastModified: new Date(),
-      changeFrequency: "daily",
+      lastModified: "2026-06-01",
       priority: 1,
     },
     {
       url: "https://vladsazon.com/blog/easyinvoicepdf",
-      lastModified: new Date("2026-05-21"),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      lastModified: "2026-05-21",
+      priority: 1,
     },
   ];
 }

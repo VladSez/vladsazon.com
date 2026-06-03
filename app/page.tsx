@@ -68,10 +68,32 @@ export default function AboutPage() {
               and received bounties.
             </p>
           </AnimatedDiv>
+          <AnimatedDiv transition={blockEnterSpring(0.92)}>
+            <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
+              Explore My Projects
+            </h3>
+            <p className="text-base text-muted-foreground leading-relaxed">
+              Interested in what I've been building?{" "}
+              <Link
+                href="/projects"
+                className="text-primary font-semibold underline underline-offset-4 hover:text-primary/80 transition-colors"
+              >
+                Check out my projects page
+              </Link>
+            </p>
+          </AnimatedDiv>
 
           <AnimatedDiv transition={blockEnterSpring(0.98)}>
             <SocialLinks />
           </AnimatedDiv>
+          <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground">
+            <ExternalLink
+              href="/llms/home.md"
+              className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
+            >
+              View page as Markdown
+            </ExternalLink>
+          </div>
         </div>
       </div>
     </>

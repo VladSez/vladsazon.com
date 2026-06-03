@@ -61,11 +61,11 @@ export default function AboutPage() {
               Open Source Contributions
             </h3>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Contributed to major OSS projects{" "}
+              Contributed to major open-source projects including{" "}
               <span className="text-primary font-semibold">
-                (zod, gumroad, cal.com, flexile)
-              </span>{" "}
-              and received bounties.
+                Zod, Gumroad, Cal.com, and Flexile
+              </span>
+              , with multiple contributions rewarded through bounty programs.
             </p>
           </AnimatedDiv>
           <AnimatedDiv transition={blockEnterSpring(0.92)}>
@@ -104,23 +104,24 @@ function Intro() {
   return (
     <div className="space-y-7">
       <p className="mx-auto max-w-prose text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
-        I'm a pragmatic product engineer with{" "}
+        I'm a pragmatic, product-focused software engineer with{" "}
         <span className="text-primary font-semibold">
-          8+ years of experience{" "}
-        </span>
+          8+ years of experience
+        </span>{" "}
         building and shipping web products with{" "}
         <span className="text-primary font-semibold">
-          React, Next.js, TypeScript, Node.js and shadcn/ui.
+          React, Next.js, TypeScript, Node.js and shadcn/ui
         </span>
-        . Comfortable owning products end-to-end - from idea, prototyping, and
-        UX decisions to production infrastructure and scaling.
+        . I own products end-to-end, from ideation and prototyping through UX
+        decisions to production infrastructure and scaling.
       </p>
+
       <p className="mx-auto max-w-prose text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
-        Deeply integrated AI into my engineering workflow using tools like{" "}
+        I've deeply integrated AI into my engineering workflow using{" "}
         <span className="text-primary font-semibold">
-          Cursor, Claude Code/OpenCode, Codex,
+          Cursor, Claude Code/OpenCode, and Codex
         </span>{" "}
-        and modern{" "}
+        with modern{" "}
         <span className="text-primary font-semibold">
           agentic development patterns
         </span>
@@ -129,7 +130,6 @@ function Intro() {
     </div>
   );
 }
-
 function Highlights() {
   return (
     <div className="rounded-2xl border border-border bg-card p-5 text-left sm:p-7 md:p-8">
@@ -148,7 +148,7 @@ function Highlights() {
             </ExternalLink>
             , an open-source invoice generator with{" "}
             <span className="text-primary font-semibold">
-              850+ GitHub stars
+              880+ GitHub stars
             </span>
             , averaging{" "}
             <span className="text-primary font-semibold">
@@ -168,7 +168,7 @@ function Highlights() {
             <span className="text-primary font-semibold">
               (zod, gumroad, cal.com, flexile)
             </span>{" "}
-            and received bounties
+            and received bounties.
           </span>
         </li>
         <li className="flex gap-3 p-3 -m-3 items-start">
@@ -176,9 +176,9 @@ function Highlights() {
             👉
           </span>
           <span className="text-pretty min-w-0">
-            Featured in a large IT Telegram channel{" "}
+            Featured in a large IT-focused Telegram channel with{" "}
             <span className="text-primary font-semibold">
-              (50k+ subscribers)
+              (55k+ subscribers)
             </span>
           </span>
         </li>
@@ -189,7 +189,7 @@ function Highlights() {
 
 function SocialLinks() {
   return (
-    <div className="flex flex-wrap justify-start gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
+    <div className="flex flex-wrap justify-start gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg mt-15">
       <Link
         href="/projects"
         className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium active:opacity-70"

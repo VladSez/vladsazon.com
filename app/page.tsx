@@ -76,7 +76,7 @@ export default function AboutPage() {
               Interested in what I've been building?{" "}
               <Link
                 href="/projects"
-                className="text-primary font-semibold underline underline-offset-4 hover:text-primary/80 transition-colors"
+                className="text-primary font-semibold underline underline-offset-4 hover:text-primary/80 transition-colors active:opacity-70"
               >
                 Check out my projects page
               </Link>

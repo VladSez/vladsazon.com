@@ -13,13 +13,22 @@ export default function ProjectsPage() {
         Projects
       </h1>
 
+      <p className="mb-8 leading-relaxed">
+        I built{" "}
+        <span className="text-primary font-semibold bg-amber-300 px-1 rounded-md">
+          EasyInvoicePDF
+        </span>{" "}
+        because I was tired of paying for bloated invoicing tools when all I
+        needed was a simple way to generate and send professional invoices.
+      </p>
+
       <ul>
         <li>
           <div>
             <ExternalLink href="https://easyinvoicepdf.com">
               EasyInvoicePDF
             </ExternalLink>{" "}
-            - a free & open-source invoice generator
+            is a free and open-source invoice generator.
           </div>
           <figure className="my-5 rounded-xl overflow-hidden border border-border bg-gray-100 shadow-sm">
             <img

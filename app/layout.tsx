@@ -145,10 +145,10 @@ export default function RootLayout({
           <Sidebar />
           <main className="flex w-full flex-col break-words mt-5 lg:mt-0">
             <div className="w-full flex-1 md:w-9/12 relative">
-              <section className="flex items-center justify-center px-0 lg:px-0 mb-20">
+              <section className="flex items-center justify-center px-0 lg:px-0 mb-15">
                 <div className="mx-auto w-full max-w-5xl">{children}</div>
               </section>
-              <div className="text-xs mb-10 text-muted-foreground absolute right-0 bottom-[41px]">
+              <div className="text-xs text-muted-foreground absolute right-0 bottom-[60px]">
                 <Copyright />
               </div>
             </div>

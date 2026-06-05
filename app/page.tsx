@@ -106,7 +106,7 @@ function Intro() {
       <p className="mx-auto max-w-prose text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
         I'm a pragmatic, product-focused software engineer with{" "}
         <span className="text-primary font-semibold">
-          8+ years of experience
+          8.5+ years of experience
         </span>{" "}
         building and shipping web products with{" "}
         <span className="text-primary font-semibold">

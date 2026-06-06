@@ -2,15 +2,31 @@
 
 import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Grid3x3,
+  RectangleVertical,
+  X,
+} from "lucide-react";
 import type { PHOTOS_METADATA } from "@/scripts/image-metadata";
+import { Button } from "@/components/ui/button";
 import { Copyright } from "@/components/ui/copyright";
+import { cn } from "@/lib/utils";
 
 type Photo = (typeof PHOTOS_METADATA)[number];
+type MobileLayout = "default" | "compact";
 
 interface PhotoGalleryProps {
   photos: readonly Photo[];
 }
+
+const iconTransition = {
+  type: "spring" as const,
+  duration: 0.3,
+  bounce: 0,
+};
 
 /**
  * Computes inline style props for a lightbox image to maintain its aspect ratio
@@ -26,6 +42,11 @@ function getLightboxImageStyle(width: number, height: number) {
 export function PhotoGallery({ photos }: PhotoGalleryProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileLayout, setMobileLayout] = useState<MobileLayout>("compact");
+
+  const handleToggleLayout = () => {
+    setMobileLayout((prev) => (prev === "compact" ? "default" : "compact"));
+  };
 
   const handleOpenPhoto = (index: number) => {
     setActiveIndex(index);
@@ -65,15 +86,69 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
   }, [isOpen, photos.length]);
 
   const activePhoto = photos[activeIndex];
+  const isCompact = mobileLayout === "compact";
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+      <div className="mb-3 flex justify-end lg:hidden">
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          className="rounded-full size-10 active:opacity-70"
+          aria-label={
+            isCompact ? "Switch to single column" : "Switch to grid view"
+          }
+          aria-pressed={isCompact}
+          onClick={handleToggleLayout}
+        >
+          <span className="relative size-5">
+            <AnimatePresence mode="popLayout" initial={false}>
+              {isCompact ? (
+                <motion.span
+                  key="single-column"
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
+                  transition={iconTransition}
+                >
+                  <RectangleVertical className="size-5" aria-hidden />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="grid"
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
+                  transition={iconTransition}
+                >
+                  <Grid3x3 className="size-5" aria-hidden />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </span>
+        </Button>
+      </div>
+
+      <div
+        className={cn(
+          "grid gap-px bg-border -mx-5 w-[calc(100%+2.5rem)] sm:mx-0 sm:w-full",
+          isCompact ? "grid-cols-3" : "grid-cols-1",
+          "lg:grid-cols-3 lg:gap-5 lg:bg-transparent lg:mx-0 lg:w-full"
+        )}
+      >
         {photos.map((photo, index) => (
           <button
             key={index}
             onClick={() => handleOpenPhoto(index)}
-            className="cursor-pointer group relative aspect-square overflow-hidden rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all active:scale-99"
+            className={cn(
+              "cursor-pointer group relative aspect-square overflow-hidden",
+              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
+              "transition-transform active:scale-[0.99]",
+              "rounded-none lg:rounded-xl"
+            )}
             aria-label={`Open ${photo.location} photo from ${photo.date}`}
           >
             <img
@@ -83,6 +158,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
               height={photo.height}
               className="bg-slate-100 h-full w-full object-cover"
               loading="lazy"
+              decoding="async"
             />
           </button>
         ))}
@@ -142,18 +218,18 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
               <div className="mt-4 flex gap-6 items-center">
                 <button
                   onClick={handlePrevious}
-                  className="group flex items-center justify-center size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors active:scale-95 active:opacity-70"
+                  className="group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50"
                   aria-label="Previous photo"
                   title="Previous photo"
                 >
                   <ChevronLeft size={20} />
                 </button>
-                <span className="text-xs text-white/60 min-w-[50px] text-center">
+                <span className="text-xs text-white/60 min-w-[50px] text-center tabular-nums">
                   {activeIndex + 1} / {photos.length}
                 </span>
                 <button
                   onClick={handleNext}
-                  className="group flex items-center justify-center size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors active:scale-95 active:opacity-70"
+                  className="group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer"
                   aria-label="Next photo"
                   title="Next photo"
                 >
@@ -163,7 +239,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
             </div>
             {/* Close button */}
             <Dialog.Close
-              className="absolute top-4 right-4 flex items-center justify-center size-10 rounded-full bg-black/90 hover:bg-black/80 text-white shadow-lg transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer"
+              className="absolute top-4 right-4 flex items-center justify-center size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer"
               aria-label="Close lightbox"
               title="Close"
             >

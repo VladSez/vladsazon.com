@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 export default function PhotosPage() {
   return (
     <>
-      <h1 className="sr-only">Photography</h1>
+      <h1 className="sr-only">Vlad Sazonau Photography</h1>
       <PhotoGallery photos={PHOTOS_METADATA} />
     </>
   );

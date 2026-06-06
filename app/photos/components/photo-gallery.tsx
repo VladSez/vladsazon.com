@@ -12,6 +12,17 @@ interface PhotoGalleryProps {
   photos: readonly Photo[];
 }
 
+/**
+ * Computes inline style props for a lightbox image to maintain its aspect ratio
+ * and responsive sizing based on viewport width and dynamic viewport height (dvh).
+ */
+function getLightboxImageStyle(width: number, height: number) {
+  return {
+    aspectRatio: `${width} / ${height}`,
+    width: `min(90vw, calc(85dvh * ${width} / ${height}))`,
+  };
+}
+
 export function PhotoGallery({ photos }: PhotoGalleryProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -99,24 +110,23 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
           >
             <div
               className="relative flex flex-col items-center max-w-4xl w-fit"
+              // Prevent click on dialog content from closing the modal
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image */}
               <div
-                className="relative flex items-center justify-center max-h-[85dvh] w-full "
-                style={{
-                  aspectRatio: `${activePhoto.width} / ${activePhoto.height}`,
-                }}
+                className="relative max-h-[85dvh] max-w-[90vw] shrink-0 bg-slate-50/30"
+                style={getLightboxImageStyle(
+                  activePhoto.width,
+                  activePhoto.height
+                )}
               >
                 <img
                   src={activePhoto.src}
                   alt={activePhoto.alt}
                   width={activePhoto.width}
                   height={activePhoto.height}
-                  className="max-h-[85dvh] max-w-[90vw] w-full h-full object-contain rounded-lg"
-                  style={{
-                    aspectRatio: `${activePhoto.width} / ${activePhoto.height}`,
-                  }}
+                  className="absolute inset-0 size-full object-contain"
                 />
               </div>
 

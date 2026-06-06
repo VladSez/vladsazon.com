@@ -4,6 +4,7 @@ import {
   AnimatedHeading,
   AnimatedHeading2,
 } from "@/components/motion";
+import { Copyright } from "@/components/ui/copyright";
 import { SOCIAL_LINKS } from "@/lib/config";
 import type { Transition } from "motion/react";
 import Link from "next/link";
@@ -19,7 +20,7 @@ const blockEnterSpring = (delay: number): Transition => ({
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="md:w-9/12 ">
       <AnimatedDiv
         transition={blockEnterSpring(0.06)}
         className="mb-5 sm:mb-7 flex justify-start md:hidden"
@@ -86,17 +87,20 @@ export default function AboutPage() {
           <AnimatedDiv transition={blockEnterSpring(0.98)}>
             <SocialLinks />
           </AnimatedDiv>
-          <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground">
+          <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-between items-center">
             <ExternalLink
               href="/llms/home.md"
               className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
             >
               View page as Markdown
             </ExternalLink>
+            <div>
+              <Copyright />
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -6,11 +6,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type React from "react";
 
-import { Copyright } from "@/components/ui/copyright";
+import { OG_IMAGE_URL } from "@/lib/config";
 import { personJsonLd } from "@/lib/json-ld";
 import { DisableScrollRestoration } from "./scroll";
+
 import "./globals.css";
-import { OG_IMAGE_URL } from "@/lib/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -142,13 +142,10 @@ export default function RootLayout({
         <div className="mx-5 mt-20 flex max-w-4xl flex-1 flex-col md:mt-20 md:flex-row lg:mx-auto lg:mt-32 lg:w-full lg:px-6">
           <Sidebar />
           <main className="flex w-full flex-col break-words mt-5 lg:mt-0">
-            <div className="w-full flex-1 md:w-9/12 relative">
+            <div className="w-full flex-1">
               <section className="flex items-center justify-center px-0 lg:px-0 mb-15">
                 <div className="mx-auto w-full max-w-5xl">{children}</div>
               </section>
-              <div className="text-xs text-muted-foreground absolute right-0 bottom-[60px]">
-                <Copyright />
-              </div>
             </div>
           </main>
         </div>

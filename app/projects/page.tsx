@@ -1,6 +1,68 @@
+import type { Metadata } from "next";
 import { ExternalLink } from "@/components/external-link";
-import { SOCIAL_LINKS } from "@/lib/config";
+import { OG_IMAGE_URL, SOCIAL_LINKS } from "@/lib/config";
 import { projectsJsonLd } from "@/lib/json-ld";
+
+const PROJECTS_URL = "https://vladsazon.com/projects";
+
+export const metadata: Metadata = {
+  title: "Vlad Sazonau | Projects",
+  description:
+    "Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator with 880+ GitHub stars, 2k monthly visitors, and 1k+ invoices generated.",
+  authors: [{ name: "Vlad Sazonau" }],
+  keywords: [
+    "easyinvoicepdf",
+    "free invoice generator",
+    "open source invoice generator",
+    "pdf invoice online",
+    "portfolio",
+    "projects",
+    "vlad sazonau",
+    "Vlad Sazonau",
+    "Uladzislau Sazonanu",
+    "Ulad Sazonau",
+    "Влад Сазонов",
+    "Vlad Sazonov",
+    "Владислав Сазонов",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  alternates: {
+    canonical: PROJECTS_URL,
+  },
+  openGraph: {
+    title: "Vlad Sazonau | Projects",
+    description:
+      "Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator.",
+    type: "website",
+    url: PROJECTS_URL,
+    siteName: "vladsazon.com",
+    images: [
+      {
+        url: OG_IMAGE_URL,
+        alt: "EasyInvoicePDF - Free & Open-Source Invoice Generator",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vlad Sazonau | Projects",
+    description:
+      "Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator.",
+    images: [
+      {
+        url: OG_IMAGE_URL,
+        alt: "EasyInvoicePDF - Free & Open-Source Invoice Generator",
+      },
+    ],
+  },
+};
 
 export default function ProjectsPage() {
   return (

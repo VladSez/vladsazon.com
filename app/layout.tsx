@@ -10,6 +10,7 @@ import { Copyright } from "@/components/ui/copyright";
 import { personJsonLd } from "@/lib/json-ld";
 import { DisableScrollRestoration } from "./scroll";
 import "./globals.css";
+import { OG_IMAGE_URL } from "@/lib/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,9 +23,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   preload: true,
 });
-
-const OG_IMAGE_URL =
-  "https://ik.imagekit.io/fl2lbswwo/vlad-sazon-og-2026.png?updatedAt=1780399067030";
 
 export const metadata: Metadata = {
   title: "Vlad Sazonau | Software Engineer & Design Enthusiast",
@@ -118,7 +116,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     title: "Vlad Sazonau",
   },
-  manifest: "/site.webmanifest",
+  manifest: "/favicons/site.webmanifest",
 };
 
 export default function RootLayout({

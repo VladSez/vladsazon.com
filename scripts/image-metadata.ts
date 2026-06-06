@@ -82,7 +82,7 @@ export const PHOTOS_METADATA = [
     date: "November, 2021",
   },
   {
-    src: `${BASE_URL}/porto-nov-2021.webp`,
+    src: `${BASE_URL}/porto-nov-2021-1.webp`,
     width: 960,
     height: 1280,
     alt: "Wide sandy beach with scattered rocks and gentle waves at golden hour, with a distant lighthouse.",

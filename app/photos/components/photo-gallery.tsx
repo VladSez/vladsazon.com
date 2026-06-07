@@ -218,7 +218,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
               <div className="mt-4 flex gap-6 items-center">
                 <button
                   onClick={handlePrevious}
-                  className="group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50"
+                  className="group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer"
                   aria-label="Previous photo"
                   title="Previous photo"
                 >
@@ -239,7 +239,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
             </div>
             {/* Close button */}
             <Dialog.Close
-              className="absolute top-4 right-4 flex items-center justify-center size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer"
+              className="absolute top-4 right-4 flex items-center justify-center size-10 rounded-full bg-gray-950/95 lg:bg-white/10 lg:hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/40 lg:ring-white/20 hover:ring-white/50 cursor-pointer"
               aria-label="Close lightbox"
               title="Close"
             >

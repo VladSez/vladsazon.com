@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { AnimatePresence, motion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Transition,
+  type Variants,
+} from "motion/react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -28,21 +34,90 @@ const iconTransition = {
   bounce: 0,
 };
 
+const lightboxTransition = {
+  type: "spring",
+  duration: 0.3,
+  bounce: 0,
+} as const satisfies Transition;
+
+const lightboxExit = {
+  duration: 0.15,
+  ease: "easeIn",
+} as const satisfies Transition;
+
+const lightboxButtonClass =
+  "group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-[transform,opacity] active:scale-[0.96] active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer select-none";
+
+function getSlideVariants(prefersReducedMotion: boolean | null): Variants {
+  if (prefersReducedMotion) {
+    return {
+      enter: { opacity: 0 },
+      center: { opacity: 1, transition: { duration: 0 } },
+      exit: { opacity: 0, transition: { duration: 0 } },
+    };
+  }
+
+  return {
+    enter: (direction: number) => ({
+      x: direction > 0 ? "30%" : "-30%",
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: lightboxTransition,
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? "-30%" : "30%",
+      opacity: 0,
+      transition: lightboxExit,
+    }),
+  };
+}
+
+function getContentMotion(delay: number, prefersReducedMotion: boolean | null) {
+  if (prefersReducedMotion) {
+    return {
+      initial: { opacity: 1 },
+      animate: { opacity: 1 },
+    };
+  }
+
+  return {
+    initial: { opacity: 0, y: 12, scale: 0.96, filter: "blur(4px)" },
+    animate: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: { ...lightboxTransition, delay },
+    },
+  };
+}
+
 /**
  * Computes inline style props for a lightbox image to maintain its aspect ratio
  * and responsive sizing based on viewport width and dynamic viewport height (dvh).
  */
-function getLightboxImageStyle(width: number, height: number) {
+function getLightboxImageStyle(
+  width: number,
+  height: number,
+  isMobile: boolean
+) {
+  const maxWidth = isMobile ? "100vw" : "90vw";
   return {
     aspectRatio: `${width} / ${height}`,
-    width: `min(90vw, calc(85dvh * ${width} / ${height}))`,
+    width: `min(${maxWidth}, calc(85dvh * ${width} / ${height}))`,
   };
 }
 
 export function PhotoGallery({ photos }: PhotoGalleryProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
   const [mobileLayout, setMobileLayout] = useState<MobileLayout>("compact");
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const handleToggleLayout = () => {
     setMobileLayout((prev) => (prev === "compact" ? "default" : "compact"));
@@ -53,40 +128,49 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
     setIsOpen(true);
   };
 
-  const handlePrevious = () => {
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    if (newDirection > 0) {
+      setActiveIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
+      return;
+    }
     setActiveIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
   };
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
-  };
+  const handlePrevious = () => paginate(-1);
+  const handleNext = () => paginate(1);
 
-  // Add keyboard navigation for photo modal when it's open
   useEffect(() => {
-    // If the modal is not open, don't add the event listener
+    const mediaQuery = window.matchMedia("(max-width: 1023px)");
+    const update = () => setIsMobileViewport(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
     if (!isOpen) return;
 
-    // Handle left/right arrow key presses to navigate photos
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "ArrowLeft") {
-        // Go to the previous photo, wrapping around to the last photo if at the start
         e.preventDefault();
-        setActiveIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
+        paginate(-1);
       } else if (e.key === "ArrowRight") {
-        // Go to the next photo, wrapping around to the first photo if at the end
         e.preventDefault();
-        setActiveIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
+        paginate(1);
       }
     }
 
-    // Attach the keyboard event listener
     document.addEventListener("keydown", handleKeyDown);
-    // Clean up the event listener when the modal closes or dependencies change
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, photos.length]);
 
   const activePhoto = photos[activeIndex];
   const isCompact = mobileLayout === "compact";
+  const slideVariants = getSlideVariants(prefersReducedMotion);
+  const overlayTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.2 };
 
   return (
     <>
@@ -134,8 +218,8 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
 
       <div
         className={cn(
-          "grid gap-px bg-border -mx-5 w-[calc(100%+2.5rem)] sm:mx-0 sm:w-full",
-          isCompact ? "grid-cols-3" : "grid-cols-1",
+          "grid gap-px  -mx-5 w-[calc(100%+2.5rem)] sm:mx-0 sm:w-full",
+          isCompact ? "grid-cols-3 bg-border" : "grid-cols-1",
           "lg:grid-cols-3 lg:gap-5 lg:bg-transparent lg:mx-0 lg:w-full"
         )}
       >
@@ -169,84 +253,135 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
           <Copyright />
         </div>
       </div>
+
       <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-        <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm" />
-          <Dialog.Title className="sr-only">
-            {activePhoto.location} photo from {activePhoto.date}
-          </Dialog.Title>
-          <Dialog.Description className="sr-only">
-            {activePhoto.alt}
-          </Dialog.Description>
+        {isOpen && (
+          <Dialog.Portal forceMount>
+            <Dialog.Overlay asChild forceMount>
+              <motion.div
+                className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={overlayTransition}
+              />
+            </Dialog.Overlay>
 
-          <Dialog.Content
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            onClick={() => setIsOpen(false)}
-            onOpenAutoFocus={(e) => e.preventDefault()}
-          >
-            <div
-              className="relative flex flex-col items-center max-w-4xl w-fit"
-              // Prevent click on dialog content from closing the modal
-              onClick={(e) => e.stopPropagation()}
+            <Dialog.Title className="sr-only">
+              {activePhoto.location} photo from {activePhoto.date}
+            </Dialog.Title>
+            <Dialog.Description className="sr-only">
+              {activePhoto.alt}
+            </Dialog.Description>
+
+            <Dialog.Content
+              asChild
+              forceMount
+              onOpenAutoFocus={(e) => e.preventDefault()}
             >
-              {/* Image */}
-              <div
-                className="relative max-h-[85dvh] max-w-[90vw] shrink-0 bg-slate-50/30"
-                style={getLightboxImageStyle(
-                  activePhoto.width,
-                  activePhoto.height
-                )}
+              <motion.div
+                className="fixed inset-0 z-50 flex items-center justify-center px-0 py-4 lg:p-4 outline-none"
+                onClick={() => setIsOpen(false)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={overlayTransition}
               >
-                <img
-                  src={activePhoto.src}
-                  alt={activePhoto.alt}
-                  width={activePhoto.width}
-                  height={activePhoto.height}
-                  className="absolute inset-0 size-full object-contain"
-                />
-              </div>
-
-              {/* Caption */}
-              <div className="mt-6 text-center max-w-sm">
-                <p className="text-sm text-white/90 font-medium">
-                  {activePhoto.location} · {activePhoto.date}
-                </p>
-                <p className="sr-only">{activePhoto.alt}</p>
-              </div>
-
-              {/* Navigation */}
-              <div className="mt-4 flex gap-6 items-center">
-                <button
-                  onClick={handlePrevious}
-                  className="group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer"
-                  aria-label="Previous photo"
-                  title="Previous photo"
+                <div
+                  className="relative flex flex-col items-center w-full lg:max-w-4xl lg:w-fit"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <ChevronLeft size={20} />
-                </button>
-                <span className="text-xs text-white/60 min-w-[50px] text-center tabular-nums">
-                  {activeIndex + 1} / {photos.length}
-                </span>
-                <button
-                  onClick={handleNext}
-                  className="group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer"
-                  aria-label="Next photo"
-                  title="Next photo"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-            </div>
-            {/* Close button */}
-            <Dialog.Close
-              className="absolute top-4 right-4 flex items-center justify-center size-10 rounded-full bg-gray-950/95 lg:bg-white/10 lg:hover:bg-white/20 text-white transition-all active:scale-95 active:opacity-70 ring-1 ring-white/40 lg:ring-white/20 hover:ring-white/50 cursor-pointer"
-              aria-label="Close lightbox"
-              title="Close"
-            >
-              <X size={20} />
-            </Dialog.Close>
-          </Dialog.Content>
-        </Dialog.Portal>
+                  <motion.div
+                    className="relative w-full max-h-[85dvh] lg:max-w-[90vw] shrink-0 overflow-hidden bg-slate-50/30"
+                    style={getLightboxImageStyle(
+                      activePhoto.width,
+                      activePhoto.height,
+                      isMobileViewport
+                    )}
+                    {...getContentMotion(0, prefersReducedMotion)}
+                  >
+                    <AnimatePresence
+                      mode="popLayout"
+                      initial={false}
+                      custom={direction}
+                    >
+                      <motion.div
+                        key={activeIndex}
+                        custom={direction}
+                        variants={slideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        drag={isMobileViewport ? "x" : false}
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={0.15}
+                        onDragEnd={(_, info) => {
+                          const swipe = info.offset.x + info.velocity.x * 0.2;
+                          if (swipe < -80) paginate(1);
+                          else if (swipe > 80) paginate(-1);
+                        }}
+                        className="absolute inset-0 touch-pan-y"
+                      >
+                        <img
+                          src={activePhoto.src}
+                          alt={activePhoto.alt}
+                          width={activePhoto.width}
+                          height={activePhoto.height}
+                          className="absolute inset-0 size-full object-contain outline-1 outline-white/10"
+                          draggable={false}
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+                  </motion.div>
+
+                  <motion.div
+                    className="mt-6 text-center max-w-sm"
+                    {...getContentMotion(0.1, prefersReducedMotion)}
+                  >
+                    <p className="text-sm text-white/90 font-medium">
+                      {activePhoto.location} · {activePhoto.date}
+                    </p>
+                    <p className="sr-only">{activePhoto.alt}</p>
+                  </motion.div>
+
+                  <motion.div
+                    className="mt-4 flex gap-6 items-center"
+                    {...getContentMotion(0.2, prefersReducedMotion)}
+                  >
+                    <button
+                      onClick={handlePrevious}
+                      className={lightboxButtonClass}
+                      aria-label="Previous photo"
+                      title="Previous photo"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    <span className="text-xs text-white/60 min-w-[50px] text-center tabular-nums">
+                      {activeIndex + 1} / {photos.length}
+                    </span>
+                    <button
+                      onClick={handleNext}
+                      className={lightboxButtonClass}
+                      aria-label="Next photo"
+                      title="Next photo"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                  </motion.div>
+                </div>
+
+                <Dialog.Close asChild>
+                  <button
+                    type="button"
+                    className="absolute top-2 right-2 lg:top-4 lg:right-4 flex items-center justify-center size-10 rounded-full bg-gray-950/95 md:bg-white/10 md:hover:bg-white/20 text-white transition-[transform,opacity] active:scale-[0.96] active:opacity-70 ring-1 ring-white/40 md:ring-white/20 hover:ring-white/50 cursor-pointer"
+                    aria-label="Close lightbox"
+                    title="Close"
+                  >
+                    <X size={20} />
+                  </button>
+                </Dialog.Close>
+              </motion.div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        )}
       </Dialog.Root>
     </>
   );

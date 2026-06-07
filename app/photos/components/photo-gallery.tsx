@@ -84,6 +84,8 @@ function getLightboxImageStyle(
   return {
     aspectRatio: `${width} / ${height}`,
     width: `min(${maxWidth}, calc(85dvh * ${width} / ${height}))`,
+    willChange: "transform",
+    transformOrigin: "center center",
   };
 }
 
@@ -168,7 +170,7 @@ function LightboxCarousel({
     if (!viewport) return;
 
     function updateWidth() {
-      const width = viewportRef.current?.clientWidth ?? 0;
+      const width = Math.floor(viewportRef.current?.clientWidth ?? 0);
       setSlideWidth(width);
       // Reset track position if not animating, not pending center, and width is valid
       if (
@@ -192,11 +194,10 @@ function LightboxCarousel({
   useLayoutEffect(() => {
     if (!pendingCenterResetRef.current) return;
 
-    const width = viewportRef.current?.clientWidth ?? slideWidth;
-    if (width <= 0) return;
+    if (slideWidth <= 0) return;
 
     // Snap to center slide
-    x.set(photoCount > 1 ? -width : 0);
+    x.set(photoCount > 1 ? -slideWidth : 0);
     pendingCenterResetRef.current = false;
     isAnimatingRef.current = false;
   }, [activeIndex, photoCount, slideWidth, x]);
@@ -204,15 +205,14 @@ function LightboxCarousel({
   // Called when carousel should animate left/right to the next/previous photo
   const goTo = useCallback(
     (direction: -1 | 1) => {
-      const width = viewportRef.current?.clientWidth ?? slideWidth;
-      if (width <= 0 || photoCount <= 1) return;
+      if (slideWidth <= 0 || photoCount <= 1) return;
 
       // If an animation is currently running, stop it
       animationRef.current?.stop();
       isAnimatingRef.current = true;
 
       // Animate to the left or right boundary (based on direction)
-      const targetX = direction === 1 ? -width * 2 : 0;
+      const targetX = direction === 1 ? -slideWidth * 2 : 0;
 
       animationRef.current = animate(x, targetX, {
         ...slideTransition,
@@ -240,8 +240,7 @@ function LightboxCarousel({
 
   // Handle finish-drag event on the carousel (either animate, swipe, or bounce back)
   function handleDragEnd(_: unknown, info: PanInfo) {
-    const width = viewportRef.current?.clientWidth ?? slideWidth;
-    if (width <= 0 || photoCount <= 1) return;
+    if (slideWidth <= 0 || photoCount <= 1) return;
 
     // Stop any ongoing animation
     animationRef.current?.stop();
@@ -262,7 +261,7 @@ function LightboxCarousel({
 
     // Otherwise, bounce back to center
     isAnimatingRef.current = true;
-    animationRef.current = animate(x, -width, {
+    animationRef.current = animate(x, -slideWidth, {
       ...slideTransition,
       onComplete: () => {
         isAnimatingRef.current = false;
@@ -276,7 +275,11 @@ function LightboxCarousel({
   const isTrackReady = slideWidth > 0;
 
   return (
-    <div ref={viewportRef} className="relative size-full overflow-hidden">
+    <div
+      ref={viewportRef}
+      className="relative mx-auto h-full w-full overflow-hidden"
+      style={slideWidth > 0 ? { width: slideWidth } : undefined}
+    >
       {/* If not ready to animate, show a static photo fallback */}
       {!isTrackReady && (
         <img
@@ -304,9 +307,7 @@ function LightboxCarousel({
           // If there is only one photo, dragging is disabled by passing 'false'.
           drag={photoCount > 1 ? "x" : false}
           dragConstraints={
-            photoCount > 1
-              ? { left: -slideWidth * 2, right: 0 }
-              : false
+            photoCount > 1 ? { left: -slideWidth * 2, right: 0 } : false
           }
           dragElastic={0.12}
           dragMomentum={false}
@@ -324,7 +325,7 @@ function LightboxCarousel({
                 alt={photo.alt}
                 width={photo.width}
                 height={photo.height}
-                className="absolute inset-0 size-full object-contain outline-1 outline-white/10"
+                className="absolute inset-0 size-full object-contain"
                 loading="eager"
                 draggable={false}
               />
@@ -460,7 +461,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
       <div
         className={cn(
           "grid gap-px  -mx-5 w-[calc(100%+2.5rem)] sm:mx-0 sm:w-full",
-          isCompact ? "grid-cols-3 bg-border" : "grid-cols-1",
+          isCompact ? "grid-cols-3" : "grid-cols-1",
           "lg:grid-cols-3 lg:gap-5 lg:bg-transparent lg:mx-0 lg:w-full"
         )}
       >
@@ -481,7 +482,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
               alt={photo.alt}
               width={photo.width}
               height={photo.height}
-              className="bg-slate-100 h-full w-full object-cover"
+              className="bg-border h-full w-full object-cover"
               loading="lazy"
               decoding="async"
             />

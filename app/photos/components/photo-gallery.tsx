@@ -1,13 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   AnimatePresence,
+  animate,
   motion,
+  useMotionValue,
   useReducedMotion,
+  type PanInfo,
   type Transition,
-  type Variants,
 } from "motion/react";
 import {
   ChevronLeft,
@@ -40,40 +48,8 @@ const lightboxTransition = {
   bounce: 0,
 } as const satisfies Transition;
 
-const lightboxExit = {
-  duration: 0.15,
-  ease: "easeIn",
-} as const satisfies Transition;
-
 const lightboxButtonClass =
   "group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-[transform,opacity] active:scale-[0.96] active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer select-none";
-
-function getSlideVariants(prefersReducedMotion: boolean | null): Variants {
-  if (prefersReducedMotion) {
-    return {
-      enter: { opacity: 0 },
-      center: { opacity: 1, transition: { duration: 0 } },
-      exit: { opacity: 0, transition: { duration: 0 } },
-    };
-  }
-
-  return {
-    enter: (direction: number) => ({
-      x: direction > 0 ? "30%" : "-30%",
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      transition: lightboxTransition,
-    },
-    exit: (direction: number) => ({
-      x: direction > 0 ? "-30%" : "30%",
-      opacity: 0,
-      transition: lightboxExit,
-    }),
-  };
-}
 
 function getContentMotion(delay: number, prefersReducedMotion: boolean | null) {
   if (prefersReducedMotion) {
@@ -111,10 +87,260 @@ function getLightboxImageStyle(
   };
 }
 
+interface LightboxImageProps {
+  photo: Photo;
+}
+
+/**
+ * Renders a single image within the lightbox view. (Used on desktop viewports)
+ */
+function LightboxImage({ photo }: LightboxImageProps) {
+  return (
+    <div className="relative size-full">
+      <img
+        src={photo.src}
+        alt={photo.alt}
+        width={photo.width}
+        height={photo.height}
+        className="absolute inset-0 size-full object-contain outline-1 outline-white/10"
+        draggable={false}
+      />
+    </div>
+  );
+}
+
+interface LightboxCarouselProps {
+  photos: readonly Photo[];
+  activeIndex: number;
+  onNavigate: (direction: -1 | 1) => void;
+  navTick: number;
+  navDirection: -1 | 1;
+}
+
+/**
+ * LightboxCarousel displays an animated, swipeable/lightbox-style photo viewer. (Used on mobile viewports)
+ * Handles navigation between photos, slide transitions, and responsive layout.
+ */
+function LightboxCarousel({
+  photos,
+  activeIndex,
+  onNavigate,
+  navTick,
+  navDirection,
+}: LightboxCarouselProps) {
+  // Watch for user preference for reduced motion
+  const prefersReducedMotion = useReducedMotion();
+  // Ref for the photo viewport element
+  const viewportRef = useRef<HTMLDivElement>(null);
+  // Total number of photos
+  const photoCount = photos.length;
+  // Index of previous and next photos for circular navigation
+  const prevIndex = (activeIndex - 1 + photoCount) % photoCount;
+  const nextIndex = (activeIndex + 1) % photoCount;
+  // We render 3 slides for smooth swipe/loop effect (or just 1 if only 1 image)
+  const slides =
+    photoCount > 1
+      ? [photos[prevIndex], photos[activeIndex], photos[nextIndex]]
+      : [photos[activeIndex]];
+  const slideCount = slides.length;
+
+  // State to keep track of each slide's width (used for motion calculations)
+  const [slideWidth, setSlideWidth] = useState(0);
+  // X position of the slide track (controlled by Framer Motion)
+  const x = useMotionValue(0);
+  // Store the current transition animation, so we can stop it programmatically
+  const animationRef = useRef<ReturnType<typeof animate> | null>(null);
+  // Are we currently animating a transition?
+  const isAnimatingRef = useRef(false);
+  // Do we need to "snap" the carousel back to center after an animation?
+  const pendingCenterResetRef = useRef(false);
+  // Last navigation "tick" (for external navigation triggering)
+  const lastHandledNavTick = useRef(navTick);
+
+  // Use reduced transition if the user prefers reduced motion
+  const slideTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : lightboxTransition;
+
+  // Handle resizing/sliding logic; This recalculates slide width and resets position
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+
+    function updateWidth() {
+      const width = viewportRef.current?.clientWidth ?? 0;
+      setSlideWidth(width);
+      // Reset track position if not animating, not pending center, and width is valid
+      if (
+        !isAnimatingRef.current &&
+        !pendingCenterResetRef.current &&
+        width > 0
+      ) {
+        // Center on active slide (middle of [prev, active, next])
+        x.set(photoCount > 1 ? -width : 0);
+      }
+    }
+
+    updateWidth();
+    // Watch for resizes to viewport using ResizeObserver
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, [photoCount, x]);
+
+  // After an animation "cycle" completes, snap the carousel back to the center slide
+  useLayoutEffect(() => {
+    if (!pendingCenterResetRef.current) return;
+
+    const width = viewportRef.current?.clientWidth ?? slideWidth;
+    if (width <= 0) return;
+
+    // Snap to center slide
+    x.set(photoCount > 1 ? -width : 0);
+    pendingCenterResetRef.current = false;
+    isAnimatingRef.current = false;
+  }, [activeIndex, photoCount, slideWidth, x]);
+
+  // Called when carousel should animate left/right to the next/previous photo
+  const goTo = useCallback(
+    (direction: -1 | 1) => {
+      const width = viewportRef.current?.clientWidth ?? slideWidth;
+      if (width <= 0 || photoCount <= 1) return;
+
+      // If an animation is currently running, stop it
+      animationRef.current?.stop();
+      isAnimatingRef.current = true;
+
+      // Animate to the left or right boundary (based on direction)
+      const targetX = direction === 1 ? -width * 2 : 0;
+
+      animationRef.current = animate(x, targetX, {
+        ...slideTransition,
+        onComplete: () => {
+          // Signal that we need to "reset" (jump) back to center after nav change
+          pendingCenterResetRef.current = true;
+          // Tell parent to update active index so we re-render with new image
+          onNavigate(direction);
+        },
+      });
+    },
+    [onNavigate, photoCount, slideTransition, slideWidth, x]
+  );
+
+  // Keep the goTo function continually up to date so event handlers never go stale
+  const goToRef = useRef(goTo);
+  goToRef.current = goTo;
+
+  // Effect: trigger "goTo" if navTick changes (external navigation requested)
+  useEffect(() => {
+    if (navTick === lastHandledNavTick.current) return;
+    lastHandledNavTick.current = navTick;
+    goToRef.current(navDirection);
+  }, [navTick, navDirection]);
+
+  // Handle finish-drag event on the carousel (either animate, swipe, or bounce back)
+  function handleDragEnd(_: unknown, info: PanInfo) {
+    const width = viewportRef.current?.clientWidth ?? slideWidth;
+    if (width <= 0 || photoCount <= 1) return;
+
+    // Stop any ongoing animation
+    animationRef.current?.stop();
+
+    // Calculate "swipe" amount; velocity is factored in for fast swipes
+    const swipe = info.offset.x + info.velocity.x * 0.15;
+
+    // If swiped left enough, go to next
+    if (swipe < -40) {
+      goTo(1);
+      return;
+    }
+    // If swiped right enough, go to previous
+    if (swipe > 40) {
+      goTo(-1);
+      return;
+    }
+
+    // Otherwise, bounce back to center
+    isAnimatingRef.current = true;
+    animationRef.current = animate(x, -width, {
+      ...slideTransition,
+      onComplete: () => {
+        isAnimatingRef.current = false;
+      },
+    });
+  }
+
+  // Grab the current active photo object (for fallback rendering)
+  const activePhoto = photos[activeIndex];
+  // Are we ready to render the track/animation (only if width is measured)
+  const isTrackReady = slideWidth > 0;
+
+  return (
+    <div ref={viewportRef} className="relative size-full overflow-hidden">
+      {/* If not ready to animate, show a static photo fallback */}
+      {!isTrackReady && (
+        <img
+          src={activePhoto.src}
+          alt={activePhoto.alt}
+          width={activePhoto.width}
+          height={activePhoto.height}
+          className="absolute inset-0 size-full object-contain outline-1 outline-white/10"
+          draggable={false}
+        />
+      )}
+
+      {/* Main animated swipeable track */}
+      {isTrackReady && (
+        <motion.div
+          className="flex h-full"
+          style={{
+            x, // Framer-motion x value, animates the whole track
+            width: slideWidth * slideCount,
+            // Allow all touch actions to be disabled when multiple photos are present (for gestures like swipe),
+            // otherwise restrict to vertical scrolling (pan-y) when only one photo is shown to prevent accidental horizontal gestures.
+            touchAction: photoCount > 1 ? "none" : "pan-y",
+          }}
+          // The 'drag' prop enables drag gesture on the x-axis (horizontal) only when there is more than one photo.
+          // If there is only one photo, dragging is disabled by passing 'false'.
+          drag={photoCount > 1 ? "x" : false}
+          dragConstraints={
+            photoCount > 1
+              ? { left: -slideWidth * 2, right: 0 }
+              : false
+          }
+          dragElastic={0.12}
+          dragMomentum={false}
+          onDragEnd={handleDragEnd}
+        >
+          {/* Render previous, current, and next slide (or just one if only one image) */}
+          {slides.map((photo) => (
+            <div
+              key={photo.src}
+              className="relative h-full shrink-0"
+              style={{ width: slideWidth, flex: `0 0 ${slideWidth}px` }}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                className="absolute inset-0 size-full object-contain outline-1 outline-white/10"
+                loading="eager"
+                draggable={false}
+              />
+            </div>
+          ))}
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
 export function PhotoGallery({ photos }: PhotoGalleryProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [navTick, setNavTick] = useState(0);
+  const [navDirection, setNavDirection] = useState<-1 | 1>(1);
   const [mobileLayout, setMobileLayout] = useState<MobileLayout>("compact");
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const prefersReducedMotion = useReducedMotion();
@@ -128,17 +354,33 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
     setIsOpen(true);
   };
 
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    if (newDirection > 0) {
-      setActiveIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
-      return;
-    }
-    setActiveIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
+  const navigateBy = useCallback(
+    (direction: -1 | 1) => {
+      setActiveIndex(
+        (prev) => (prev + direction + photos.length) % photos.length
+      );
+    },
+    [photos.length]
+  );
+
+  const requestCarouselNavigation = (direction: -1 | 1) => {
+    setNavDirection(direction);
+    setNavTick((tick) => tick + 1);
   };
 
-  const handlePrevious = () => paginate(-1);
-  const handleNext = () => paginate(1);
+  const handleNavigate = useCallback(
+    (direction: -1 | 1) => {
+      if (isMobileViewport) {
+        requestCarouselNavigation(direction);
+        return;
+      }
+      navigateBy(direction);
+    },
+    [isMobileViewport, navigateBy]
+  );
+
+  const handlePrevious = () => handleNavigate(-1);
+  const handleNext = () => handleNavigate(1);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 1023px)");
@@ -154,20 +396,19 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        paginate(-1);
+        handleNavigate(-1);
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        paginate(1);
+        handleNavigate(1);
       }
     }
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, photos.length]);
+  }, [handleNavigate, isOpen]);
 
   const activePhoto = photos[activeIndex];
   const isCompact = mobileLayout === "compact";
-  const slideVariants = getSlideVariants(prefersReducedMotion);
   const overlayTransition = prefersReducedMotion
     ? { duration: 0 }
     : { duration: 0.2 };
@@ -286,7 +527,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                 transition={overlayTransition}
               >
                 <div
-                  className="relative flex flex-col items-center w-full lg:max-w-4xl lg:w-fit"
+                  className="flex flex-col items-center w-full lg:max-w-4xl lg:w-fit"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <motion.div
@@ -298,48 +539,27 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                     )}
                     {...getContentMotion(0, prefersReducedMotion)}
                   >
-                    <AnimatePresence
-                      mode="popLayout"
-                      initial={false}
-                      custom={direction}
-                    >
-                      <motion.div
-                        key={activeIndex}
-                        custom={direction}
-                        variants={slideVariants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        drag={isMobileViewport ? "x" : false}
-                        dragConstraints={{ left: 0, right: 0 }}
-                        dragElastic={0.15}
-                        onDragEnd={(_, info) => {
-                          const swipe = info.offset.x + info.velocity.x * 0.2;
-                          if (swipe < -80) paginate(1);
-                          else if (swipe > 80) paginate(-1);
-                        }}
-                        className="absolute inset-0 touch-pan-y"
-                      >
-                        <img
-                          src={activePhoto.src}
-                          alt={activePhoto.alt}
-                          width={activePhoto.width}
-                          height={activePhoto.height}
-                          className="absolute inset-0 size-full object-contain outline-1 outline-white/10"
-                          draggable={false}
-                        />
-                      </motion.div>
-                    </AnimatePresence>
+                    {/* Render LightboxCarousel on mobile viewports, otherwise render LightboxImage */}
+                    {isMobileViewport ? (
+                      <LightboxCarousel
+                        photos={photos}
+                        activeIndex={activeIndex}
+                        onNavigate={navigateBy}
+                        navTick={navTick}
+                        navDirection={navDirection}
+                      />
+                    ) : (
+                      <LightboxImage photo={activePhoto} />
+                    )}
                   </motion.div>
 
                   <motion.div
-                    className="mt-6 text-center max-w-sm"
+                    className="mt-4 lg:mt-6 text-center max-w-sm"
                     {...getContentMotion(0.1, prefersReducedMotion)}
                   >
                     <p className="text-sm text-white/90 font-medium">
                       {activePhoto.location} · {activePhoto.date}
                     </p>
-                    <p className="sr-only">{activePhoto.alt}</p>
                   </motion.div>
 
                   <motion.div

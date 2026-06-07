@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "update-deps": "pnpm upgrade --interactive --latest -rLi --config.minimum-release-age=7200",
-    "expose-dev": "ngrok http --url=monotone-rotunda-parish.ngrok-free.dev 3000"
+    "expose-to-internet": "ngrok http --url=monotone-rotunda-parish.ngrok-free.dev 3000"
   },
   "dependencies": {
     "@hookform/resolvers": "3.10.0",

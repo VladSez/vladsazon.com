@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ExternalLink } from "@/components/external-link";
 import { OG_IMAGE_URL, SOCIAL_LINKS } from "@/lib/config";
 import { projectsJsonLd } from "@/lib/json-ld";
+import { Copyright } from "@/components/ui/copyright";
 
 const PROJECTS_URL = "https://vladsazon.com/projects";
 
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <>
+    <div className="md:w-9/12 ">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
@@ -157,14 +158,17 @@ export default function ProjectsPage() {
         </li>
       </ul>
 
-      <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground">
+      <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-between items-center">
         <ExternalLink
           href="/llms/projects.md"
           className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
         >
           View page as Markdown
         </ExternalLink>
+        <div>
+          <Copyright />
+        </div>
       </div>
-    </>
+    </div>
   );
 }

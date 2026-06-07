@@ -21,6 +21,10 @@ export const NAV_ITEMS = [
   //   href: "/blog/easyinvoicepdf",
   // },
   {
+    label: "Photography",
+    href: "/photos",
+  },
+  {
     label: "CV",
     href: "/cv",
   },

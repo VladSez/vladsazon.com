@@ -4,12 +4,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: "https://vladsazon.com",
-      lastModified: "2026-06-01",
+      lastModified: "2026-06-06",
       priority: 1,
     },
     {
       url: "https://vladsazon.com/projects",
-      lastModified: "2026-06-01",
+      lastModified: "2026-06-06",
+      priority: 1,
+    },
+    {
+      url: "https://vladsazon.com/photos",
+      lastModified: "2026-06-06",
       priority: 1,
     },
     {

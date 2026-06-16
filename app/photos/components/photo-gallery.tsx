@@ -483,8 +483,6 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
               width={photo.width}
               height={photo.height}
               className="bg-border h-full w-full object-cover"
-              loading="lazy"
-              decoding="async"
             />
           </button>
         ))}

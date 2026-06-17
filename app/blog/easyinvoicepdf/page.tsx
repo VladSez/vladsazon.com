@@ -185,7 +185,7 @@ export default function EasyInvoicePDFArticle() {
                 line of code, run it yourself, or fork it if you need something
                 custom. It has picked up{" "}
                 <span className="text-primary font-semibold">
-                  880+ GitHub stars
+                  900+ GitHub stars
                 </span>{" "}
                 since launch, with over 200 invoices generated monthly by users.
               </p>

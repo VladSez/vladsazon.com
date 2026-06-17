@@ -152,14 +152,16 @@ function Highlights() {
             </ExternalLink>
             , an open-source invoice generator with{" "}
             <span className="text-primary font-semibold">
-              880+ GitHub stars
+              900+ GitHub stars
             </span>
             , averaging{" "}
             <span className="text-primary font-semibold">
               2k monthly visitors
             </span>
             , and{" "}
-            <span className="text-primary font-semibold">1k+ invoices</span>{" "}
+            <span className="text-primary font-semibold">
+              2k+ total invoices
+            </span>{" "}
             generated.
           </span>
         </li>

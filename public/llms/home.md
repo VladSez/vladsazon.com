@@ -1,7 +1,22 @@
+---
+type: Reference
 title: Vlad Sazonau - Software Engineer & Design Enthusiast
 description: Pragmatic product engineer with 8+ years of experience building and shipping web products with React, Next.js, TypeScript, Node.js, and shadcn/ui. Deeply integrated AI into engineering workflow using Cursor and modern agentic development patterns.
-URL: https://vladsazon.com/
-Last updated: 2026-06-03
+resource: https://vladsazon.com/
+tags:
+  [
+    software-engineer,
+    portfolio,
+    home,
+    react,
+    nextjs,
+    typescript,
+    ai-native,
+    open-source,
+    vlad sazonau,
+  ]
+timestamp: 2026-06-03T00:00:00Z
+---
 
 # Vlad Sazonau - Software Engineer & Design Enthusiast
 
@@ -15,7 +30,7 @@ Deeply integrated AI into my engineering workflow using tools like **Cursor, Cla
 
 ## Highlights
 
-- **Built EasyInvoicePDF**, an open-source invoice generator with **880+ GitHub stars**, averaging **2k monthly visitors**, and **1k+ invoices** generated.
+- **Built EasyInvoicePDF**, an open-source invoice generator with **900+ GitHub stars**, averaging **2k monthly visitors**, and **2k+ total invoices** generated.
 - **Contributed to major OSS projects** (zod, gumroad, cal.com, flexile) and received bounties.
 - **Featured in a large IT Telegram channel** (50k+ subscribers).
 

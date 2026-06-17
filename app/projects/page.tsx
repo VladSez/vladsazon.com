@@ -9,7 +9,7 @@ const PROJECTS_URL = "https://vladsazon.com/projects";
 export const metadata: Metadata = {
   title: "Vlad Sazonau | Projects",
   description:
-    "Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator with 880+ GitHub stars, 2k monthly visitors, and 1k+ invoices generated.",
+    "Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator with 900+ GitHub stars, 2k monthly visitors, and 2k+ total invoices generated.",
   authors: [{ name: "Vlad Sazonau" }],
   keywords: [
     "easyinvoicepdf",
@@ -149,7 +149,7 @@ export default function ProjectsPage() {
               EasyInvoicePDF
             </ExternalLink>
             <ExternalLink
-              href={SOCIAL_LINKS.GITHUB}
+              href={SOCIAL_LINKS.EASYINVOICEPDF_GITHUB}
               className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium"
             >
               GitHub

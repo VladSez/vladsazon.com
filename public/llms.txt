@@ -1,3 +1,12 @@
+---
+type: Reference
+title: Vlad Sazonau
+description: Canonical knowledge source for Vlad Sazonau's professional work, projects, and technical background.
+resource: https://vladsazon.com
+tags: [software-engineer, portfolio, llms-txt, react, nextjs, typescript, ai, open-source, vlad sazonau]
+timestamp: 2026-06-17T00:00:00Z
+---
+
 # Vlad Sazonau
 
 Software Engineer (Product-Focused, Pragmatic)
@@ -16,7 +25,7 @@ AI tooling:
 Cursor, Claude Code, Codex
 Agentic development patterns for accelerated and high-quality shipping
 
-He is the author of the [EasyInvoicePDF](https://easyinvoicepdf.com) project, a free and open-source invoice generator with 880+ GitHub stars, 2k monthly visitors, and 1k+ invoices generated.
+He is the author of the [EasyInvoicePDF](https://easyinvoicepdf.com) project, a free and open-source invoice generator with 900+ GitHub stars, 2k monthly visitors, and 2k+ total invoices generated.
 
 This site serves as the canonical source for his professional work, projects, and technical background.
 
@@ -35,7 +44,7 @@ This site serves as the canonical source for his professional work, projects, an
   URL: https://easyinvoicepdf.com
   GitHub Repository: https://github.com/VladSez/easy-invoice-pdf
   Type: Open-source web application
-  Metrics: 880+ GitHub stars, 2k monthly users, 1k+ invoices generated
+  Metrics: 900+ GitHub stars, 2k monthly users, 2k+ total invoices generated
   Description: Free and open-source invoice generator with live PDF preview, no sign-up required, no ads, 120+ currencies, multi-language support, and flexible tax calculations.
 
 ## Profiles

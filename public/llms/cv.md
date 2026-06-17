@@ -1,7 +1,21 @@
+---
+type: Reference
 title: Vlad Sazonau's CV / Resume
-description: Resume of Vlad Sazonau, a product engineer with 8+ years of experience. Specialized in React, Next.js, TypeScript, Node.js, and full-stack development. Experienced with modern AI tools/Agentic development patterns, DevOps, and design optimization. Featured EasyInvoicePDF project with 880+ GitHub stars.
-URL: https://vladsazon.com/vlad-sazon-cv.pdf
-Last updated: 2026-06-03
+description: Resume of Vlad Sazonau, a product engineer with 8+ years of experience. Specialized in React, Next.js, TypeScript, Node.js, and full-stack development. Experienced with modern AI tools/Agentic development patterns. Featured EasyInvoicePDF project with 900+ GitHub stars.
+resource: https://vladsazon.com/vlad-sazon-cv.pdf
+tags:
+  [
+    cv,
+    resume,
+    software-engineer,
+    react,
+    nextjs,
+    typescript,
+    full-stack,
+    vlad sazonau,
+  ]
+timestamp: 2026-06-03T00:00:00Z
+---
 
 # Vlad Sazonau's CV / Resume
 
@@ -46,9 +60,9 @@ Open-source invoice generator built with React, Next.js, and TypeScript. Feature
 
 **Metrics:**
 
-- 880+ GitHub stars
+- 900+ GitHub stars
 - 2k monthly visitors
-- 1k+ invoices generated
+- 2k+ total invoices generated
 
 **Links:**
 

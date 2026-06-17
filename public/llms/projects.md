@@ -1,7 +1,20 @@
+---
+type: Reference
 title: Vlad Sazonau's Projects
-description: Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator with 880+ GitHub stars, 2k monthly visitors, and 1k+ invoices generated. Features live PDF preview, 100+ currencies, multi-language support, and flexible tax calculations.
-URL: https://vladsazon.com/projects
-Last updated: 2026-06-03
+description: Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator with 900+ GitHub stars, 2k monthly visitors, and 1k+ invoices generated. Features live PDF preview, 100+ currencies, multi-language support, and flexible tax calculations.
+resource: https://vladsazon.com/projects
+tags:
+  [
+    projects,
+    portfolio,
+    easyinvoicepdf,
+    open-source,
+    invoice-generator,
+    pdf,
+    vlad sazonau,
+  ]
+timestamp: 2026-06-03T00:00:00Z
+---
 
 # Vlad Sazonau's Projects
 

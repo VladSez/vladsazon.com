@@ -12,6 +12,7 @@ export const SOCIAL_LINKS = {
   LINKEDIN: "https://www.linkedin.com/in/vlad-sazonau-22a9a9126",
   X: "https://x.com/vladsazonau",
   EASYINVOICEPDF: "https://easyinvoicepdf.com",
+  EASYINVOICEPDF_GITHUB: "https://github.com/VladSez/easy-invoice-pdf",
 } as const;
 
 export const OG_IMAGE_URL =

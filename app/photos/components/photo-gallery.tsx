@@ -49,7 +49,7 @@ const lightboxTransition = {
 } as const satisfies Transition;
 
 const lightboxButtonClass =
-  "group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-[transform,opacity] active:scale-[0.96] active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer select-none";
+  "group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-[0.96] active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer select-none";
 
 function getContentMotion(delay: number, prefersReducedMotion: boolean | null) {
   if (prefersReducedMotion) {
@@ -590,7 +590,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                 <Dialog.Close asChild>
                   <button
                     type="button"
-                    className="absolute top-2 right-2 lg:top-4 lg:right-4 flex items-center justify-center size-10 rounded-full bg-gray-950/95 md:bg-white/10 md:hover:bg-white/20 text-white transition-[transform,opacity] active:scale-[0.96] active:opacity-70 ring-1 ring-white/40 md:ring-white/20 hover:ring-white/50 cursor-pointer"
+                    className="absolute top-2 right-2 lg:top-4 lg:right-4 flex items-center justify-center size-10 rounded-full bg-gray-950/95 md:bg-white/10 md:hover:bg-white/20 text-white transition-all active:scale-[0.96] active:opacity-70 ring-1 ring-white/40 md:ring-white/20 hover:ring-white/50 cursor-pointer"
                     aria-label="Close lightbox"
                     title="Close"
                   >

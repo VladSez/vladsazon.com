@@ -5,12 +5,9 @@ import {
   AnimatedHeading2,
 } from "@/components/motion";
 import { Copyright } from "@/components/ui/copyright";
-import { SOCIAL_LINKS } from "@/lib/config";
+import { AVATAR_URL, SOCIAL_LINKS } from "@/lib/config";
 import type { Transition } from "motion/react";
 import Link from "next/link";
-
-const AVATAR_SRC =
-  "https://ik.imagekit.io/fl2lbswwo/avatar.jpeg?updatedAt=1757456439459";
 
 const blockEnterSpring = (delay: number): Transition => ({
   duration: 0.4,
@@ -26,7 +23,7 @@ export default function AboutPage() {
         className="mb-5 sm:mb-7 flex justify-start md:hidden"
       >
         <img
-          src={AVATAR_SRC}
+          src={AVATAR_URL}
           alt="Portrait of Vlad Sazonau wearing glasses and a light shirt, outdoors in front of a sunlit glass building."
           width={128}
           height={128}

@@ -6,9 +6,7 @@ import {
 } from "../../components/motion";
 import { ExternalLink } from "@/components/external-link";
 import type { Transition } from "motion/react";
-
-const AVATAR_SRC =
-  "https://ik.imagekit.io/fl2lbswwo/avatar.jpeg?updatedAt=1757456439459";
+import { AVATAR_URL } from "@/lib/config";
 
 const blockEnterSpring = (delay: number): Transition => ({
   type: "spring",
@@ -29,7 +27,7 @@ export function Hero() {
           className="mb-5 sm:mb-7 flex justify-center"
         >
           <img
-            src={AVATAR_SRC}
+            src={AVATAR_URL}
             alt="Portrait of Vlad Sazonau wearing glasses and a light shirt, outdoors in front of a sunlit glass building."
             width={128}
             height={128}

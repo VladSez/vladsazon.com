@@ -1,10 +1,15 @@
 export const SITE_URL = "https://vladsazon.com";
 
+export const OG_IMAGE_URL =
+  "https://ik.imagekit.io/fl2lbswwo/vldszn-og-06-2026.png?updatedAt=1781699383065";
+
+export const AVATAR_URL =
+  "https://ik.imagekit.io/fl2lbswwo/avatar.jpeg?updatedAt=1757456439459";
+
 export const PERSON = {
   name: "Vlad Sazonau",
   jobTitle: "Software Engineer & Design Enthusiast",
-  avatar:
-    "https://ik.imagekit.io/fl2lbswwo/avatar.jpeg?updatedAt=1757456439459",
+  avatar: AVATAR_URL,
 } as const;
 
 export const SOCIAL_LINKS = {
@@ -14,6 +19,3 @@ export const SOCIAL_LINKS = {
   EASYINVOICEPDF: "https://easyinvoicepdf.com",
   EASYINVOICEPDF_GITHUB: "https://github.com/VladSez/easy-invoice-pdf",
 } as const;
-
-export const OG_IMAGE_URL =
-  "https://ik.imagekit.io/fl2lbswwo/vlad-sazon-og-06-2026.png?updatedAt=1780705708371";

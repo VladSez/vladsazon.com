@@ -5,9 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { NAV_ITEMS } from "./navigation";
 import { AnimatedSignature } from "../animated-signature";
-
-const AVATAR_SRC =
-  "https://ik.imagekit.io/fl2lbswwo/avatar.jpeg?updatedAt=1757456439459";
+import { AVATAR_URL } from "@/lib/config";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -27,7 +25,7 @@ export function Sidebar() {
               width={48}
               fetchPriority="high"
               className="size-14 rounded-full object-cover ring-1 ring-gray-200 dark:ring-gray-800 shadow-sm hover:shadow-md transition-shadow duration-200"
-              src={AVATAR_SRC}
+              src={AVATAR_URL}
             />
           </Link>
         </div>

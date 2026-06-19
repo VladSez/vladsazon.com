@@ -135,15 +135,16 @@ export default function RootLayout({
         />
         {/* Disable scroll restoration to prevent automatic scroll position restoration (especially on iOS chrome browser) */}
         <DisableScrollRestoration />
-        <div className="fixed top-[26px] lg:top-4 right-16 lg:right-4 z-50 text-sm text-muted-foreground">
+        <div className="fixed top-[26px] lg:top-4 right-14 md:right-6 lg:right-4 z-50 text-sm text-muted-foreground">
           <Clock />
         </div>
+
         <MobileHeader />
-        <div className="mx-5 mt-20 flex max-w-4xl flex-1 flex-col md:mt-20 md:flex-row lg:mx-auto lg:mt-32 lg:w-full lg:px-6">
+        <div className="mx-auto mt-20 flex w-full max-w-4xl flex-1 flex-col px-5 md:mt-20 md:flex-row lg:mt-32 lg:px-6">
           <Sidebar />
           <main className="flex w-full flex-col break-words mt-5 lg:mt-0">
             <div className="w-full flex-1">
-              <section className="flex items-center justify-center px-0 lg:px-0 mb-15">
+              <section className="flex items-center justify-center mb-15">
                 <div className="mx-auto w-full max-w-5xl">{children}</div>
               </section>
             </div>

@@ -67,7 +67,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="md:w-9/12 ">
+    <div className="md:mx-auto md:w-9/12 lg:mx-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
@@ -94,7 +94,7 @@ export default function ProjectsPage() {
 
       <ul>
         <li>
-          <figure className="my-5 rounded-xl overflow-hidden bg-gray-100 shadow-sm">
+          <figure className="mt-5 rounded-xl overflow-hidden bg-gray-100 shadow-sm">
             <a
               href="https://easyinvoicepdf.com"
               target="_blank"
@@ -110,6 +110,10 @@ export default function ProjectsPage() {
               />
             </a>
           </figure>
+          <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-6 mt-2">
+            Built for freelancers, small businesses, indie builders, and digital
+            nomads who&apos;d rather ship than do admin.
+          </p>
           <p className="text-base leading-relaxed mb-4 font-medium">
             Features:
           </p>

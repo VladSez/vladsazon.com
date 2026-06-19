@@ -11,7 +11,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-[200px] flex-shrink-0 md:block">
+    <aside className="hidden w-[200px] flex-shrink-0 lg:block">
       <div className="sticky top-20">
         <div className="mb-8 pl-6">
           <Link

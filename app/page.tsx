@@ -17,10 +17,10 @@ const blockEnterSpring = (delay: number): Transition => ({
 
 export default function AboutPage() {
   return (
-    <div className="md:w-9/12 ">
+    <div className="md:mx-auto md:w-9/12 lg:mx-0">
       <AnimatedDiv
         transition={blockEnterSpring(0.06)}
-        className="mb-5 sm:mb-7 flex justify-start md:hidden"
+        className="mb-5 sm:mb-7 flex justify-start lg:hidden"
       >
         <img
           src={AVATAR_URL}

@@ -24,6 +24,8 @@ timestamp: 2026-06-03T00:00:00Z
 
 **A free & open-source invoice generator**
 
+Built for freelancers, small businesses, indie builders, and digital nomads who'd rather ship than do admin.
+
 Link: https://easyinvoicepdf.com
 
 This is a professional invoice template showing a clean layout with seller and buyer details, line items, tax calculations, and professional formatting.

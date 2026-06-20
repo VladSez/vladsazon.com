@@ -88,7 +88,7 @@ export function MobileMenuPanel({ onOpenChange }: MobileMenuPanelProps) {
                   onOpenChange(false);
                 }}
                 className={cn(
-                  "block px-4 py-2 rounded text-sm font-medium transition-colors hover:bg-primary/5",
+                  "block px-4 py-2 rounded text-sm font-medium transition-all hover:bg-primary/5 active:opacity-70",
                   isActive
                     ? "bg-primary/10 text-primary hover:bg-primary/15"
                     : "text-foreground"

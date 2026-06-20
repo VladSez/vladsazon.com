@@ -15,7 +15,7 @@ export function MobileHeader() {
       <header className="fixed top-0 left-0 right-0 z-40 border-b border-border bg-background lg:hidden">
         <div className="mx-auto w-full max-w-4xl px-5 lg:px-6">
           <div className="flex items-center justify-between py-4 md:mx-auto md:w-9/12">
-            <Link href="/" className="flex-1">
+            <Link href="/" className="flex-1 active:opacity-70 transition-all">
               <TextEffect
                 per="char"
                 preset="fade"

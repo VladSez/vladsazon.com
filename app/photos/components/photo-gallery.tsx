@@ -416,14 +416,16 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
 
   return (
     <>
-      <div className="mb-3 flex justify-end lg:hidden">
+      <div className="mb-3 flex justify-end -mx-2.5 lg:hidden">
         <Button
           type="button"
           variant="ghost"
           size="icon"
           className="rounded-full size-10 active:opacity-70"
           aria-label={
-            isCompact ? "Switch to single column" : "Switch to grid view"
+            isCompact
+              ? "Switch to single column layout"
+              : "Switch to grid layout"
           }
           aria-pressed={isCompact}
           onClick={handleToggleLayout}
@@ -439,7 +441,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                   exit={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
                   transition={iconTransition}
                 >
-                  <RectangleVertical className="size-5" aria-hidden />
+                  <RectangleVertical className="!size-5" aria-hidden />
                 </motion.span>
               ) : (
                 <motion.span
@@ -450,7 +452,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                   exit={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
                   transition={iconTransition}
                 >
-                  <Grid3x3 className="size-5" aria-hidden />
+                  <Grid3x3 className="!size-5" aria-hidden />
                 </motion.span>
               )}
             </AnimatePresence>

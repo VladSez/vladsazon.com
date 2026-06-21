@@ -7,7 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import type React from "react";
 
 import { OG_IMAGE_URL } from "@/lib/config";
-import { personJsonLd } from "@/lib/json-ld";
+import { layoutJsonLd } from "@/lib/json-ld";
 import { DisableScrollRestoration } from "./scroll";
 
 import "./globals.css";
@@ -131,7 +131,7 @@ export default function RootLayout({
       >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(layoutJsonLd) }}
         />
         {/* Disable scroll restoration to prevent automatic scroll position restoration (especially on iOS chrome browser) */}
         <DisableScrollRestoration />

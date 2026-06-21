@@ -6,7 +6,7 @@ import {
 } from "../../components/motion";
 import { ExternalLink } from "@/components/external-link";
 import type { Transition } from "motion/react";
-import { AVATAR_URL } from "@/lib/config";
+import { AVATAR_URL, SOCIAL_LINKS } from "@/lib/config";
 
 const blockEnterSpring = (delay: number): Transition => ({
   type: "spring",
@@ -182,12 +182,10 @@ function CurrentProjects() {
 function SocialLinks() {
   return (
     <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg ">
-      <ExternalLink href="https://github.com/VladSez">GitHub</ExternalLink>
+      <ExternalLink href={SOCIAL_LINKS.GITHUB}>GitHub</ExternalLink>
 
-      <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
-      <ExternalLink href="https://www.linkedin.com/in/vlad-sazonau-22a9a9126">
-        LinkedIn
-      </ExternalLink>
+      <ExternalLink href={SOCIAL_LINKS.CV}>CV</ExternalLink>
+      <ExternalLink href={SOCIAL_LINKS.LINKEDIN}>LinkedIn</ExternalLink>
       <Link
         href="/blog/easyinvoicepdf"
         className="text-blue-700 hover:text-blue-500 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 font-medium"

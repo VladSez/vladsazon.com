@@ -1,5 +1,11 @@
 export const SITE_URL = "https://vladsazon.com";
 
+/** ISO 8601 dates for structured data (site launch + last content update). */
+export const SITE_DATES = {
+  published: "2025-10-03T21:29:24Z",
+  modified: "2026-06-01T00:00:00Z",
+} as const;
+
 export const OG_IMAGE_URL =
   "https://ik.imagekit.io/fl2lbswwo/vldszn-og-06-2026.png?updatedAt=1781699383065";
 

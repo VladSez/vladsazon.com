@@ -2,6 +2,7 @@ import {
   AVATAR_URL,
   OG_IMAGE_URL,
   PERSON,
+  SITE_DATES,
   SITE_URL,
   SOCIAL_LINKS,
 } from "./config";
@@ -11,6 +12,7 @@ const IDS = {
   person: `${SITE_URL}/#person`,
   personImage: `${SITE_URL}/#person-image`,
   websiteImage: `${SITE_URL}/#website-image`,
+  homePage: `${SITE_URL}/#webpage`,
   projectsPage: `${SITE_URL}/projects#webpage`,
   projectsBreadcrumb: `${SITE_URL}/projects#breadcrumb`,
   easyInvoicePdf: `${SITE_URL}/projects#project-easyinvoicepdf`,
@@ -82,6 +84,22 @@ const personNode = {
   sameAs: [SOCIAL_LINKS.GITHUB, SOCIAL_LINKS.LINKEDIN, SOCIAL_LINKS.X],
 };
 
+const homeProfilePage = {
+  "@type": "ProfilePage",
+  "@id": IDS.homePage,
+  url: SITE_URL,
+  name: PERSON.name,
+  description: SITE_DESCRIPTION,
+  inLanguage: "en",
+  isPartOf: { "@id": IDS.website },
+  about: { "@id": IDS.person },
+  mainEntity: { "@id": IDS.person },
+  primaryImageOfPage: { "@id": IDS.personImage },
+  dateCreated: SITE_DATES.published,
+  datePublished: SITE_DATES.published,
+  dateModified: SITE_DATES.modified,
+};
+
 const projectsCollectionPage = {
   "@type": "CollectionPage",
   "@id": IDS.projectsPage,
@@ -138,6 +156,12 @@ const easyInvoicePdfApp = {
 };
 
 export const layoutJsonLd = buildGraph([websiteNodeSlim, personNode]);
+
+export const homeJsonLd = buildGraph([
+  websiteNodeFull,
+  personNode,
+  homeProfilePage,
+]);
 
 export const projectsJsonLd = buildGraph([
   websiteNodeSlim,

@@ -6,6 +6,7 @@ import {
 } from "@/components/motion";
 import { Copyright } from "@/components/ui/copyright";
 import { AVATAR_URL, SOCIAL_LINKS } from "@/lib/config";
+import { homeJsonLd } from "@/lib/json-ld";
 import type { Transition } from "motion/react";
 import Link from "next/link";
 
@@ -18,6 +19,10 @@ const blockEnterSpring = (delay: number): Transition => ({
 export default function AboutPage() {
   return (
     <div className="md:mx-auto md:w-9/12 lg:mx-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <AnimatedDiv
         transition={blockEnterSpring(0.06)}
         className="mb-5 sm:mb-7 flex justify-start lg:hidden"

@@ -32,7 +32,7 @@ Pragmatic, product-focused software engineer with 8+ years of experience buildin
 - Email: [smallredeagle@gmail.com](mailto:smallredeagle@gmail.com)
 - Website: [vladsazon.com](http://vladsazon.com)
 - GitHub: [github.com/VladSez](https://github.com/VladSez)
-- LinkedIn: [linkedin.com/in/vlad-sazonau-22a9a9126](https://www.linkedin.com/in/vlad-sazonau-22a9a9126)
+- LinkedIn: [linkedin.com/in/vlad-sazonau](https://www.linkedin.com/in/vlad-sazonau/)
 
 ## Key Skills
 
@@ -72,6 +72,6 @@ Open-source invoice generator built with React, Next.js, and TypeScript. Feature
 ## Links
 
 - [Download CV (PDF)](/vlad-sazon-cv.pdf)
-- [LinkedIn Profile](https://www.linkedin.com/in/vlad-sazonau-22a9a9126)
+- [LinkedIn Profile](https://www.linkedin.com/in/vlad-sazonau/)
 - [GitHub](https://github.com/VladSez)
 - [X / Twitter](https://x.com/vladsazonau)

@@ -50,7 +50,7 @@ This site serves as the canonical source for his professional work, projects, an
 ## Profiles
 
 - [GitHub](https://github.com/VladSez): Open-source work and repositories.
-- [LinkedIn](https://www.linkedin.com/in/vlad-sazonau-22a9a9126): Professional profile.
+- [LinkedIn](https://www.linkedin.com/in/vlad-sazonau/): Professional profile.
 
 ## Capabilities
 

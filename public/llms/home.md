@@ -47,5 +47,5 @@ Interested in what I've been building? [Check out my projects page](/projects).
 - [Projects](/projects)
 - [CV (PDF)](/vlad-sazon-cv.pdf)
 - [GitHub](https://github.com/VladSez)
-- [LinkedIn](https://www.linkedin.com/in/vlad-sazonau-22a9a9126)
+- [LinkedIn](https://www.linkedin.com/in/vlad-sazonau/)
 - [X](https://x.com/vladsazonau)

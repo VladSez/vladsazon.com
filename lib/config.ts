@@ -14,8 +14,9 @@ export const PERSON = {
 
 export const SOCIAL_LINKS = {
   GITHUB: "https://github.com/VladSez",
-  LINKEDIN: "https://www.linkedin.com/in/vlad-sazonau-22a9a9126",
+  LINKEDIN: "https://www.linkedin.com/in/vlad-sazonau/",
   X: "https://x.com/vladsazonau",
   EASYINVOICEPDF: "https://easyinvoicepdf.com",
   EASYINVOICEPDF_GITHUB: "https://github.com/VladSez/easy-invoice-pdf",
+  CV: "/vlad-sazon-cv.pdf",
 } as const;

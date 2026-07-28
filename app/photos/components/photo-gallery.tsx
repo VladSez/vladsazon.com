@@ -48,8 +48,8 @@ const lightboxTransition = {
 const lightboxButtonClass =
   "group flex items-center justify-center size-12 lg:size-10 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-[0.96] active:opacity-70 ring-1 ring-white/20 hover:ring-white/50 cursor-pointer select-none";
 
-function getContentMotion(delay: number, prefersReducedMotion: boolean | null) {
-  if (prefersReducedMotion) {
+function getContentMotion(delay: number, skipAnimation: boolean) {
+  if (skipAnimation) {
     return {
       initial: { opacity: 1 },
       animate: { opacity: 1 },
@@ -81,6 +81,7 @@ function getLightboxImageStyle(
   return {
     aspectRatio: `${width} / ${height}`,
     width: `min(${maxWidth}, calc(85dvh * ${width} / ${height}))`,
+    willChange: "transform",
     transformOrigin: "center center",
   };
 }
@@ -151,9 +152,6 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
 
   const activePhoto = photos[activeIndex];
   const isCompact = mobileLayout === "compact";
-  const overlayTransition = prefersReducedMotion
-    ? { duration: 0 }
-    : { duration: 0.2 };
 
   return (
     <>
@@ -241,12 +239,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
         {isOpen && (
           <Dialog.Portal forceMount>
             <Dialog.Overlay asChild forceMount>
-              <motion.div
-                className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={overlayTransition}
-              />
+              <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm" />
             </Dialog.Overlay>
 
             <Dialog.Title className="sr-only">
@@ -261,25 +254,25 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
               forceMount
               onOpenAutoFocus={(e) => e.preventDefault()}
             >
-              <motion.div
+              <div
                 className="fixed inset-0 z-50 flex items-center justify-center px-0 py-4 lg:p-4 outline-none"
                 onClick={() => setIsOpen(false)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={overlayTransition}
               >
                 <div
                   className="flex flex-col items-center w-full lg:max-w-4xl lg:w-fit"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <motion.div
-                    className="relative w-full max-h-[85dvh] lg:max-w-[90vw] shrink-0 overflow-hidden bg-slate-50/30"
+                    className="relative w-full max-h-[85dvh] lg:max-w-[90vw] shrink-0 overflow-hidden bg-slate-50/30 [clip-path:inset(1)]"
                     style={getLightboxImageStyle(
                       activePhoto.width,
                       activePhoto.height,
                       isMobileViewport
                     )}
-                    {...getContentMotion(0, prefersReducedMotion)}
+                    {...getContentMotion(
+                      0,
+                      prefersReducedMotion || isMobileViewport
+                    )}
                   >
                     <Carousel
                       setApi={setCarouselApi}
@@ -301,7 +294,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                               alt={photo.alt}
                               width={photo.width}
                               height={photo.height}
-                              className="size-full object-contain"
+                              className="size-full object-contain outline-1 -outline-offset-1 outline-white/10"
                               loading="eager"
                               draggable={false}
                             />
@@ -311,19 +304,13 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                     </Carousel>
                   </motion.div>
 
-                  <motion.div
-                    className="mt-4 lg:mt-6 text-center max-w-sm"
-                    {...getContentMotion(0.1, prefersReducedMotion)}
-                  >
+                  <div className="mt-4 lg:mt-6 text-center max-w-sm">
                     <p className="text-sm text-white/90 font-medium">
                       {activePhoto.location} · {activePhoto.date}
                     </p>
-                  </motion.div>
+                  </div>
 
-                  <motion.div
-                    className="mt-4 flex gap-6 items-center"
-                    {...getContentMotion(0.2, prefersReducedMotion)}
-                  >
+                  <div className="mt-4 flex gap-6 items-center">
                     <button
                       onClick={handlePrevious}
                       className={lightboxButtonClass}
@@ -343,7 +330,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                     >
                       <ChevronRight size={20} />
                     </button>
-                  </motion.div>
+                  </div>
                 </div>
 
                 <Dialog.Close asChild>
@@ -356,7 +343,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
                     <X size={20} />
                   </button>
                 </Dialog.Close>
-              </motion.div>
+              </div>
             </Dialog.Content>
           </Dialog.Portal>
         )}

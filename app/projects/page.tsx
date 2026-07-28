@@ -147,7 +147,7 @@ export default function ProjectsPage() {
 
           <div className="mt-4 flex gap-4">
             <ExternalLink
-              href={SOCIAL_LINKS.EASYINVOICEPDF}
+              href={"https://dub.sh/easy-invoice"}
               className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium"
             >
               EasyInvoicePDF

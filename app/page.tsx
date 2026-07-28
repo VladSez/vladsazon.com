@@ -1,9 +1,5 @@
 import { ExternalLink } from "@/components/external-link";
-import {
-  AnimatedDiv,
-  AnimatedHeading,
-  AnimatedHeading2,
-} from "@/components/motion";
+import { AnimatedDiv } from "@/components/motion";
 import { Copyright } from "@/components/ui/copyright";
 import { AVATAR_URL, SOCIAL_LINKS } from "@/lib/config";
 import { homeJsonLd } from "@/lib/json-ld";
@@ -38,28 +34,22 @@ export default function AboutPage() {
           className="size-32 rounded-full object-cover outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10"
         />
       </AnimatedDiv>
-      <AnimatedHeading
-        transition={blockEnterSpring(0.18)}
-        className="font-bold tracking-tight leading-none text-gray-950 dark:text-gray-50 text-balance mb-3 text-3xl md:text-4xl lg:text-5xl"
-      >
+      <h1 className="font-bold tracking-tight leading-none text-gray-950 dark:text-gray-50 text-balance mb-3 text-3xl md:text-4xl lg:text-5xl">
         Vlad Sazonau
-      </AnimatedHeading>
+      </h1>
       <div className="space-y-10 lg:px-0">
-        <AnimatedHeading2
-          transition={blockEnterSpring(0.42)}
-          className="font-medium text-muted-foreground leading-snug text-pretty tracking-tight"
-        >
+        <h2 className="font-medium text-muted-foreground leading-snug text-pretty tracking-tight text-lg sm:text-xl md:text-xl lg:text-2xl">
           Software Engineer & Design Enthusiast
-        </AnimatedHeading2>
+        </h2>
 
         <div className="mx-auto max-w-2xl space-y-7 md:space-y-9">
-          <AnimatedDiv transition={blockEnterSpring(0.62)}>
+          <div>
             <Intro />
-          </AnimatedDiv>
-          <AnimatedDiv transition={blockEnterSpring(0.74)}>
+          </div>
+          <div>
             <Highlights />
-          </AnimatedDiv>
-          <AnimatedDiv transition={blockEnterSpring(0.86)}>
+          </div>
+          <div>
             <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
               Open Source Contributions
             </h3>
@@ -70,8 +60,8 @@ export default function AboutPage() {
               </span>
               , with multiple contributions rewarded through bounty programs.
             </p>
-          </AnimatedDiv>
-          <AnimatedDiv transition={blockEnterSpring(0.92)}>
+          </div>
+          <div>
             <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
               Explore My Projects
             </h3>
@@ -84,11 +74,11 @@ export default function AboutPage() {
                 Check out my projects page
               </Link>
             </p>
-          </AnimatedDiv>
+          </div>
 
-          <AnimatedDiv transition={blockEnterSpring(0.98)}>
+          <div>
             <SocialLinks />
-          </AnimatedDiv>
+          </div>
           <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-between items-center">
             <ExternalLink
               href="/llms/home.md"

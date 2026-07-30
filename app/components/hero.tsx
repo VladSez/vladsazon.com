@@ -114,9 +114,7 @@ function Highlights() {
               EasyInvoicePDF
             </ExternalLink>
             , an open-source invoice generator with{" "}
-            <span className="text-primary font-semibold">
-              900+ GitHub stars
-            </span>
+            <span className="text-primary font-semibold">1k+ GitHub stars</span>
             , averaging{" "}
             <span className="text-primary font-semibold">
               2k monthly visitors

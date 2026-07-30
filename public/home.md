@@ -30,7 +30,7 @@ Deeply integrated AI into my engineering workflow using tools like **Cursor, Cla
 
 ## Highlights
 
-- **Built EasyInvoicePDF**, an open-source invoice generator with **900+ GitHub stars**, averaging **2k monthly visitors**, and **2k+ total invoices** generated.
+- **Built EasyInvoicePDF**, an open-source invoice generator with **1k+ GitHub stars**, averaging **2k monthly visitors**, and **2k+ total invoices** generated.
 - **Contributed to major OSS projects** (zod, gumroad, cal.com, flexile) and received bounties.
 - **Featured in a large IT Telegram channel** (50k+ subscribers).
 
@@ -40,12 +40,12 @@ Contributed to major OSS projects (zod, gumroad, cal.com, flexile) and received 
 
 ## Explore My Projects
 
-Interested in what I've been building? [Check out my projects page](/projects).
+Interested in what I've been building? [Check out my projects page](https://vladsazon.com/projects.md).
 
 ## Links
 
-- [Projects](/projects)
-- [CV (PDF)](/vlad-sazon-cv.pdf)
+- [Projects](https://vladsazon.com/projects.md)
+- [CV (PDF)](https://vladsazon.com/vlad-sazon-cv.pdf)
 - [GitHub](https://github.com/VladSez)
 - [LinkedIn](https://www.linkedin.com/in/vlad-sazonau/)
 - [X](https://x.com/vladsazonau)

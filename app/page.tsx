@@ -81,7 +81,7 @@ export default function AboutPage() {
           </div>
           <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-between items-center">
             <ExternalLink
-              href="/llms/home.md"
+              href="/home.md"
               className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
             >
               View page as Markdown
@@ -113,6 +113,18 @@ function Intro() {
       </p>
 
       <p className="mx-auto max-w-prose text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
+        For the past{" "}
+        <span className="text-primary font-semibold">3.5 years</span>, I've been
+        building software for the{" "}
+        <span className="text-primary font-semibold">maritime industry</span>.
+        In my spare time, I've been working on{" "}
+        <ExternalLink href={SOCIAL_LINKS.EASYINVOICEPDF}>
+          EasyInvoicePDF
+        </ExternalLink>{" "}
+        - a free, open-source invoice generator.
+      </p>
+
+      <p className="mx-auto max-w-prose text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
         I've deeply integrated AI into my engineering workflow using{" "}
         <span className="text-primary font-semibold">
           Cursor, Claude Code/OpenCode, and Codex
@@ -126,6 +138,7 @@ function Intro() {
     </div>
   );
 }
+
 function Highlights() {
   return (
     <div className="rounded-2xl border border-border bg-card p-5 text-left sm:p-7 md:p-8">
@@ -143,9 +156,7 @@ function Highlights() {
               EasyInvoicePDF
             </ExternalLink>
             , an open-source invoice generator with{" "}
-            <span className="text-primary font-semibold">
-              900+ GitHub stars
-            </span>
+            <span className="text-primary font-semibold">1k+ GitHub stars</span>
             , averaging{" "}
             <span className="text-primary font-semibold">
               2k monthly visitors

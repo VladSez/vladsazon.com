@@ -9,13 +9,15 @@ const PROJECTS_URL = "https://vladsazon.com/projects";
 export const metadata: Metadata = {
   title: "Vlad Sazonau | Projects",
   description:
-    "Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator with 900+ GitHub stars, 2k monthly visitors, and 2k+ total invoices generated.",
+    "Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source alternative to Invoice Ninja and Zoho Invoice with 1k+ GitHub stars, 2k monthly visitors, and 2k+ total invoices generated.",
   authors: [{ name: "Vlad Sazonau" }],
   keywords: [
     "easyinvoicepdf",
     "free invoice generator",
     "open source invoice generator",
     "pdf invoice online",
+    "invoice ninja alternative",
+    "zoho invoice alternative",
     "portfolio",
     "projects",
     "vlad sazonau",
@@ -164,7 +166,7 @@ export default function ProjectsPage() {
 
       <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-between items-center">
         <ExternalLink
-          href="/llms/projects.md"
+          href="/projects.md"
           className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
         >
           View page as Markdown

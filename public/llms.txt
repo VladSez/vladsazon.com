@@ -25,18 +25,18 @@ AI tooling:
 Cursor, Claude Code, Codex
 Agentic development patterns for accelerated and high-quality shipping
 
-He is the author of the [EasyInvoicePDF](https://easyinvoicepdf.com) project, a free and open-source invoice generator with 900+ GitHub stars, 2k monthly visitors, and 2k+ total invoices generated.
+He is the author of the [EasyInvoicePDF](https://easyinvoicepdf.com) project, a free and open-source alternative to Invoice Ninja and Zoho Invoice with 1k+ GitHub stars, 2k monthly visitors, and 2k+ total invoices generated.
 
 This site serves as the canonical source for his professional work, projects, and technical background.
 
 ## Site
 
 - [Home](https://vladsazon.com/): Landing page with bio, highlights, current projects, and outbound links.
-  - [Home (Markdown)](https://vladsazon.com/llms/home.md): Full text export of the home page.
-- [Projects](https://vladsazon.com/projects): List of projects by Vlad Sazonau. EasyInvoicePDF - a free & open-source invoice generator made by Vlad Sazonau.
-  - [Projects (Markdown)](https://vladsazon.com/llms/projects.md): Full text export of the projects page.
+  - [Home (Markdown)](https://vladsazon.com/home.md): Full text export of the home page.
+- [Projects](https://vladsazon.com/projects): List of projects by Vlad Sazonau. EasyInvoicePDF - a free & open-source alternative to Invoice Ninja and Zoho Invoice made by Vlad Sazonau.
+  - [Projects (Markdown)](https://vladsazon.com/projects.md): Full text export of the projects page.
 - [CV (PDF)](https://vladsazon.com/vlad-sazon-cv.pdf): Resume in PDF form.
-  - [CV (Markdown)](https://vladsazon.com/llms/cv.md): Full text export of the CV.
+  - [CV (Markdown)](https://vladsazon.com/cv.md): Full text export of the CV.
 
 ## Projects
 
@@ -44,8 +44,8 @@ This site serves as the canonical source for his professional work, projects, an
   URL: https://easyinvoicepdf.com
   GitHub Repository: https://github.com/VladSez/easy-invoice-pdf
   Type: Open-source web application
-  Metrics: 900+ GitHub stars, 2k monthly users, 2k+ total invoices generated
-  Description: Free and open-source invoice generator with live PDF preview, no sign-up required, no ads, 120+ currencies, multi-language support, and flexible tax calculations.
+  Metrics: 1k+ GitHub stars, 2k monthly users, 2k+ total invoices generated
+  Description: Free and open-source alternative to Invoice Ninja and Zoho Invoice with live PDF preview, no sign-up required, no ads, 120+ currencies, multi-language support, and flexible tax calculations.
 
 ## Profiles
 

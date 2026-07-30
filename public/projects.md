@@ -1,7 +1,7 @@
 ---
 type: Reference
 title: Vlad Sazonau's Projects
-description: Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source invoice generator with 900+ GitHub stars, 2k monthly visitors, and 1k+ invoices generated. Features live PDF preview, 100+ currencies, multi-language support, and flexible tax calculations.
+description: Portfolio of projects built by Vlad Sazonau. EasyInvoicePDF - a free and open-source alternative to Invoice Ninja and Zoho Invoice with 1k+ GitHub stars, 2k monthly visitors, and 1k+ invoices generated. Features live PDF preview, 100+ currencies, multi-language support, and flexible tax calculations.
 resource: https://vladsazon.com/projects
 tags:
   [
@@ -24,7 +24,7 @@ timestamp: 2026-06-03T00:00:00Z
 
 **A free & open-source invoice generator**
 
-Built for freelancers, small businesses, indie builders, and digital nomads who'd rather ship than do admin.
+A lightweight alternative to Invoice Ninja and Zoho Invoice — built for freelancers, small businesses, indie builders, and digital nomads who'd rather ship than do admin.
 
 Link: https://easyinvoicepdf.com
 

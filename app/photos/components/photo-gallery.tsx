@@ -213,7 +213,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
             className={cn(
               "cursor-pointer group relative aspect-square overflow-hidden",
               "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-              "transition-transform active:scale-[0.99]",
+              "transition-transform active:scale-[0.995]",
               "rounded-none lg:rounded-xl"
             )}
             aria-label={`Open ${photo.location} photo from ${photo.date}`}

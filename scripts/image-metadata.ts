@@ -369,6 +369,46 @@ export const PHOTOS_METADATA = [
     location: "Warsaw, Poland",
     date: "January, 2026",
   },
+  {
+    src: `${BASE_URL}/sopot-jul-2026.webp`,
+    width: 960,
+    height: 1280,
+    alt: "Wide sandy beach beneath dramatic clouds beside the calm Baltic Sea.",
+    location: "Sopot, Poland",
+    date: "July, 2026",
+  },
+  {
+    src: `${BASE_URL}/egypt-jul-2026-2.webp`,
+    width: 960,
+    height: 1280,
+    alt: "Two straw parasols framing a clear blue sky.",
+    location: "Sharm El-Sheikh, Egypt",
+    date: "July, 2026",
+  },
+  {
+    src: `${BASE_URL}/egypt-jul-2026-3.webp`,
+    width: 960,
+    height: 1280,
+    alt: "Elevated view of the Red Sea at sunset with palm trees and a small waterfront deck.",
+    location: "Sharm El-Sheikh, Egypt",
+    date: "July, 2026",
+  },
+  {
+    src: `${BASE_URL}/egypt-jul-2026-4.webp`,
+    width: 960,
+    height: 1280,
+    alt: "High-angle view of a resort beach with straw parasols, sun loungers, and a pier beside the deep blue sea.",
+    location: "Sharm El-Sheikh, Egypt",
+    date: "July, 2026",
+  },
+  {
+    src: `${BASE_URL}/egypt-jul-2026.webp`,
+    width: 960,
+    height: 1280,
+    alt: "Dense garden of prickly pear and columnar cacti under a clear blue sky.",
+    location: "Sharm El-Sheikh, Egypt",
+    date: "July, 2026",
+  },
 ] as const satisfies {
   src: string;
   width: number;

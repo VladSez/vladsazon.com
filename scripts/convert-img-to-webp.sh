@@ -6,6 +6,10 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+GIT_PREFIX="$(git rev-parse --show-prefix)"
+
 INPUT_DIR="blog_input"
 OUTPUT_DIR="blog_output"
 QUALITY=82
@@ -52,7 +56,17 @@ if [ "$#" -gt 0 ]; then
 	exit 0
 fi
 
-# default mode → IMG_*.png only
-find "$INPUT_DIR" -type f -name "IMG_*.png" -print0 | while IFS= read -r -d '' file; do
-	process_file "$file"
-done
+# default mode → uncommitted PNG files only
+list_uncommitted_files() {
+	# Added, copied, modified, and renamed tracked files (staged or unstaged).
+	git diff --name-only --diff-filter=ACMR -z HEAD -- "$INPUT_DIR"
+	# Untracked files that are not ignored by Git.
+	git ls-files --others --exclude-standard -z -- "$INPUT_DIR"
+}
+
+while IFS= read -r -d '' file; do
+	relative_file="${file#"$GIT_PREFIX"}"
+	case "$relative_file" in
+		"$INPUT_DIR"/*.png) process_file "$relative_file" ;;
+	esac
+done < <(list_uncommitted_files)

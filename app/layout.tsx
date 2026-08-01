@@ -1,6 +1,6 @@
 import { MobileHeader } from "@/app/components/layout/mobile-header";
 import { Sidebar } from "@/app/components/layout/sidebar";
-import { Clock } from "@/components/clock";
+import { Footer } from "@/app/components/layout/footer";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -135,19 +135,16 @@ export default function RootLayout({
         />
         {/* Disable scroll restoration to prevent automatic scroll position restoration (especially on iOS chrome browser) */}
         <DisableScrollRestoration />
-        <div className="fixed top-[26px] lg:top-4 right-14 md:right-6 lg:right-4 z-50 text-sm text-muted-foreground">
-          <Clock />
-        </div>
-
         <MobileHeader />
         <div className="mx-auto mt-20 flex w-full max-w-4xl flex-1 flex-col px-5 md:mt-20 md:flex-row lg:mt-32 lg:px-6">
           <Sidebar />
-          <main className="flex w-full flex-col break-words mt-5 lg:mt-0">
+          <main className="flex min-h-[calc(100dvh-8rem)] w-full flex-col break-words mt-5 lg:mt-0 lg:min-h-0">
             <div className="w-full flex-1">
-              <section className="flex items-center justify-center mb-15">
+              <section className="flex items-center justify-center pb-15">
                 <div className="mx-auto w-full max-w-5xl">{children}</div>
               </section>
             </div>
+            <Footer />
           </main>
         </div>
         {process.env.NODE_ENV === "production" && <Analytics />}

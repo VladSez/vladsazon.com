@@ -12,6 +12,12 @@ const blockEnterSpring = (delay: number): Transition => ({
   delay,
 });
 
+const SOCIAL_ITEMS = [
+  { label: "LinkedIn", href: SOCIAL_LINKS.LINKEDIN },
+  { label: "GitHub", href: SOCIAL_LINKS.GITHUB },
+  { label: "X", href: SOCIAL_LINKS.X },
+] as const;
+
 export default function AboutPage() {
   return (
     <div className="md:mx-auto md:w-9/12 lg:mx-0">
@@ -69,23 +75,31 @@ export default function AboutPage() {
               Interested in what I've been building?{" "}
               <Link
                 href="/projects"
-                className="text-primary font-semibold underline underline-offset-4 hover:text-primary/80 transition-colors active:opacity-70"
+                className={
+                  "text-blue-700 hover:text-blue-500 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 font-medium active:opacity-70"
+                }
               >
                 Check out my projects page
               </Link>
             </p>
           </div>
-
           <div>
+            <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
+              My CV
+            </h3>
+            <p className="text-base leading-relaxed text-muted-foreground">
+              Want a closer look at my experience and background?{" "}
+              <ExternalLink href={SOCIAL_LINKS.CV}>View my CV</ExternalLink>.
+            </p>
+          </div>
+          <div className="hidden lg:block">
+            <h3 className="mb-3 text-lg font-semibold tracking-tight text-balance text-gray-950 dark:text-gray-50 sm:mb-4 sm:text-xl">
+              Connect
+            </h3>
             <SocialLinks />
           </div>
-          <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-between items-center">
-            <ExternalLink
-              href="/home.md"
-              className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
-            >
-              View page as Markdown
-            </ExternalLink>
+
+          <div className="mt-12 hidden items-center justify-end border-t border-border/50 pt-8 text-sm text-muted-foreground lg:flex">
             <div>
               <Copyright />
             </div>
@@ -198,17 +212,19 @@ function Highlights() {
 
 function SocialLinks() {
   return (
-    <div className="flex flex-wrap justify-start gap-x-5 gap-y-2 text-pretty text-base font-light leading-relaxed text-muted-foreground sm:text-lg mt-10">
-      <Link
-        href="/projects"
-        className="text-blue-700 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 underline underline-offset-4 decoration-2 transition-all duration-200 hover:decoration-blue-500 dark:hover:decoration-blue-300 font-medium active:opacity-70"
-      >
-        Projects
-      </Link>
-      <ExternalLink href="/vlad-sazon-cv.pdf">CV</ExternalLink>
-      <ExternalLink href={SOCIAL_LINKS.GITHUB}>GitHub</ExternalLink>
-      <ExternalLink href={SOCIAL_LINKS.LINKEDIN}>LinkedIn</ExternalLink>
-      <ExternalLink href={SOCIAL_LINKS.X}>X</ExternalLink>
-    </div>
+    <nav aria-label="Social links">
+      <ul className="flex flex-wrap gap-x-5 gap-y-1">
+        {SOCIAL_ITEMS.map((item) => (
+          <li key={item.href}>
+            <ExternalLink
+              href={item.href}
+              className="inline-flex min-h-10 items-center"
+            >
+              {item.label}
+            </ExternalLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }

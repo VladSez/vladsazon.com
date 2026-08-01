@@ -229,7 +229,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
         ))}
       </div>
 
-      <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-end items-center">
+      <div className="mt-12 hidden items-center justify-end border-t border-border/50 pt-8 text-sm text-muted-foreground lg:flex">
         <div>
           <Copyright />
         </div>

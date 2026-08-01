@@ -164,13 +164,7 @@ export default function ProjectsPage() {
         </li>
       </ul>
 
-      <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-between items-center">
-        <ExternalLink
-          href="/projects.md"
-          className="text-xs text-muted-foreground hover:text-foreground no-underline decoration-0 hover:decoration-0 transition-colors"
-        >
-          View page as Markdown
-        </ExternalLink>
+      <div className="mt-12 hidden items-center justify-end border-t border-border/50 pt-8 text-sm text-muted-foreground lg:flex">
         <div>
           <Copyright />
         </div>

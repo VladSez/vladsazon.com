@@ -5,7 +5,13 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { NAV_ITEMS } from "./navigation";
 import { AnimatedSignature } from "../animated-signature";
-import { AVATAR_URL } from "@/lib/config";
+import { AVATAR_URL, SOCIAL_LINKS } from "@/lib/config";
+
+const DESKTOP_NAV_ITEMS = [
+  ...NAV_ITEMS,
+  { label: "GitHub", href: SOCIAL_LINKS.GITHUB, isExternal: true },
+  { label: "LinkedIn", href: SOCIAL_LINKS.LINKEDIN, isExternal: true },
+] as const;
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -32,10 +38,10 @@ export function Sidebar() {
 
         <nav aria-label="Main navigation">
           <ul className="flex flex-col items-start gap-3">
-            {NAV_ITEMS.map((item) => {
+            {DESKTOP_NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
               const isExternal =
-                "isExternal" in item && item?.isExternal === true;
+                "isExternal" in item && item.isExternal === true;
 
               return (
                 <li key={item.href}>

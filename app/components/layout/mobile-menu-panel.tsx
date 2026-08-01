@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
@@ -11,6 +11,7 @@ import {
 } from "motion/react";
 import { NAV_ITEMS } from "./navigation";
 import { cn } from "@/lib/utils";
+import { SOCIAL_LINKS } from "@/lib/config";
 
 interface MobileMenuPanelProps {
   onOpenChange: (open: boolean) => void;
@@ -37,9 +38,16 @@ const itemVariants = {
   },
 } as const satisfies Variants;
 
+const MOBILE_NAV_ITEMS = [
+  ...NAV_ITEMS,
+  { label: "GitHub", href: SOCIAL_LINKS.GITHUB, isExternal: true },
+  { label: "LinkedIn", href: SOCIAL_LINKS.LINKEDIN, isExternal: true },
+] as const;
+
 export function MobileMenuPanel({ onOpenChange }: MobileMenuPanelProps) {
   const pathname = usePathname();
   const prefersReducedMotion = useReducedMotion();
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const transition = prefersReducedMotion ? { duration: 0 } : panelTransition;
 
@@ -50,12 +58,29 @@ export function MobileMenuPanel({ onOpenChange }: MobileMenuPanelProps) {
       }
     };
 
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+
+      if (!(target instanceof Element)) return;
+      if (panelRef.current?.contains(target)) return;
+      if (target.closest('[aria-controls="mobile-menu"]')) return;
+
+      onOpenChange(false);
+    };
+
     window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
   }, [onOpenChange]);
 
   return (
     <motion.div
+      ref={panelRef}
+      id="mobile-menu"
       role="dialog"
       aria-modal="false"
       className={cn(
@@ -73,9 +98,10 @@ export function MobileMenuPanel({ onOpenChange }: MobileMenuPanelProps) {
         animate={prefersReducedMotion ? "visible" : "visible"}
         variants={prefersReducedMotion ? undefined : listVariants}
       >
-        {NAV_ITEMS.map((item) => {
+        {MOBILE_NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
-          const isExternal = "isExternal" in item && item?.isExternal === true;
+          const isExternal =
+            "isExternal" in item && item.isExternal === true;
 
           return (
             <motion.div
@@ -88,7 +114,7 @@ export function MobileMenuPanel({ onOpenChange }: MobileMenuPanelProps) {
                   onOpenChange(false);
                 }}
                 className={cn(
-                  "block px-4 py-2 rounded text-sm font-medium transition-all hover:bg-primary/5 active:opacity-70",
+                  "block px-4 py-2 rounded text-sm font-medium transition-colors hover:bg-primary/5 active:opacity-70",
                   isActive
                     ? "bg-primary/10 text-primary hover:bg-primary/15"
                     : "text-foreground"

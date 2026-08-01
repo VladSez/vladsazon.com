@@ -213,7 +213,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
             className={cn(
               "cursor-pointer group relative aspect-square overflow-hidden",
               "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600",
-              "transition-transform active:scale-[0.99]",
+              "transition-transform active:scale-[0.995]",
               "rounded-none lg:rounded-xl"
             )}
             aria-label={`Open ${photo.location} photo from ${photo.date}`}
@@ -229,7 +229,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
         ))}
       </div>
 
-      <div className="mt-12 pt-8 border-t border-border/50 text-sm text-muted-foreground flex justify-end items-center">
+      <div className="mt-12 hidden items-center justify-end border-t border-border/50 pt-8 text-sm text-muted-foreground lg:flex">
         <div>
           <Copyright />
         </div>

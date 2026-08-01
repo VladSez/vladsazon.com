@@ -92,9 +92,9 @@ scripts/image-metadata.ts  →  app/photos/page.tsx  →  PhotoGallery
 
 No changes under `app/photos/` are needed when adding a photo — only `image-metadata.ts`.
 
-## Helper script (dimensions only)
+## Metadata helper
 
-`generate-img-metadata.sh` scans `blog_output/` and writes a minimal `image-metadata.ts` with `src`, `width`, and `height` only. **Do not run this on the full gallery** — it overwrites the file and drops `alt`, `location`, and `date`. Use it only as a quick way to read dimensions for a new file, then copy the values into a manual entry.
+`generate-img-metadata.sh` finds uncommitted source images in `blog_input/`, reads dimensions from their matching `.webp` files in `blog_output/`, and skips images already present in `image-metadata.ts`. It appends complete entries without changing existing metadata and prompts for `alt`, `location`, and `date` so every addition follows the existing `PHOTOS_METADATA` format.
 
 ## Tips
 

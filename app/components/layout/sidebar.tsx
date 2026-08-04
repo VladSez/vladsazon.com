@@ -92,11 +92,11 @@ export function Sidebar() {
                   type: "spring",
                   duration: 3,
                   bounce: 0,
-                  delay: 1.0, // Increased delay
+                  delay: 0.75,
                 },
                 opacity: {
                   duration: 0.1,
-                  delay: 1.0, // Increased delay
+                  delay: 0.75,
                 },
               },
             },
